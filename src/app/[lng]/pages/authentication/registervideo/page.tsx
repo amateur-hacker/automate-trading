@@ -1,8 +1,8 @@
 "use client";
-import VideoRegister from "@/Components/Others/Authentication/VideoRegister";
+import Register from "@/Components/Others/Authentication/Register";
 
 const VideoRegisterComponent = () => {
-  return <VideoRegister />;
+  return <Register />;
 };
 
 export default VideoRegisterComponent;
