@@ -15,7 +15,7 @@ const ProjectList = () => {
   const [activeTab, setActiveTab] = useState("1");
   return (
     <>
-      <CommonBreadcrumb parent="Project" pageTitle="Project List" />
+      <CommonBreadcrumb parent="Project" pageTitle="Add API" />
       <Container fluid>
         <Row className="project-cards">
           <Col md="12" className="project-list">
@@ -32,27 +32,27 @@ const ProjectList = () => {
                     <NavItem>
                       <NavLink className={activeTab === "2" ? "active" : ""} onClick={() => setActiveTab("2")}>
                         <Info />
-                        Doing
+                       Filter 
                       </NavLink>
                     </NavItem>
-                    <NavItem>
+                    {/* <NavItem>
                       <NavLink className={activeTab === "3" ? "active" : ""} onClick={() => setActiveTab("3")}>
                         <CheckCircle />
                         Done
                       </NavLink>
-                    </NavItem>
+                    </NavItem> */}
                   </Nav>
                 </Col>
                 <Col md="6">
                   <Button color="primary" style={{ color: "white" }} onClick={() => router.push(`/${i18LangStatus}/project/createlist`)}>
                     <PlusCircle />
-                    Create New Project
+                    Add API
                   </Button>
                 </Col>
               </Row>
             </Card>
           </Col>
-          <Col sm="12">
+          {/* <Col sm="12">
             <Card>
               <CardBody>
                 <TabContent activeTab={activeTab} id="top-tabContent">
@@ -68,7 +68,7 @@ const ProjectList = () => {
                 </TabContent>
               </CardBody>
             </Card>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </>

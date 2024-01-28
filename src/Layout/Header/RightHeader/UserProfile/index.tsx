@@ -49,8 +49,8 @@ const UserProfile = () => {
           width={40}
         />
         <Media className="flex flex-col items-center justify-center" body>
-          <span>Emay Walter</span>
-          <span className="user-id">ID: {userId}</span>
+          {/* <span>Emay Walter</span> */}
+          <span className="user-id font-bold">ID: {userId}</span>
         </Media>
       </Media>
       <ul className="profile-dropdown onhover-show-div">

@@ -43,6 +43,45 @@
   font-size: 1.2rem;
 }
 
+.add-api-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
+  padding: 1rem;
+}
+
+.add-api-container > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 10px 10px 10px 10px rgba(68, 102, 242, 0.05);
+}
+
+.add-api-container > div span {
+  font-weight: bold;
+}
+
+.addapi-sidebar {
+  position: fixed;
+  height: 100%;
+
+  min-width: 300px;
+  max-width: 450px;
+  right: 0;
+  background: white;
+  z-index: 10;
+  box-shadow: 0 0 10px 1px rgba(68, 102, 242, 0.05);
+}
+
+.relative {
+  position: relative !important;
+}
+
 .user-id {
   margin-top: 0.2rem;
 }
@@ -73,4 +112,8 @@
 
 .h-full {
   height: 100%;
+}
+
+.font-bold {
+  font-weight: 700 !important;
 }

@@ -41,20 +41,20 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   }, [sidebarWrapper]);
   return (
     <>
-      <div className="page-wrapper  modern-sidebar">
+      <div className="page-wrapper modern-sidebar relative">
         <div className={`page-wrapper ${sidebarWrapper}`} id="page-wrapper">
           <Header />
           <div className="page-body-wrapper ">
             <Sidebar />
             <div className="page-body">
-              {/* {children} */}
+              {children}
               <ToastContainer />
             </div>
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </div>
       </div>
-      {/* <ThemeCustomizer /> */}
+      <ThemeCustomizer />
     </>
   );
 };

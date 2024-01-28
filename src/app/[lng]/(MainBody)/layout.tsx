@@ -32,7 +32,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
           <div className="page-body-wrapper ">
             <Sidebar />
             <div className="page-body">
-              {/* {children} */}
+              {children}
               <ToastContainer />
             </div>
             <Footer />

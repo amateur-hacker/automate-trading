@@ -21,15 +21,15 @@ const NavClass = ({ activeToggle }: NavClassProps) => {
         <Card>
           <CardBody>
             <div className="email-app-sidebar left-bookmark">
-              <ProfileHeader />
+              {/* <ProfileHeader /> */}
               <Nav className="main-menu" role="tablist">
                 <NavItem>
                   <NewTaskClass />
                 </NavItem>
                 <NavItem>
-                  <span className="main-title">{Views}</span>
+                  <span className="main-title">Filter</span>
                 </NavItem>
-                {TaskData.map((item) => (
+                {/* {TaskData.map((item) => (
                   <NavItem key={item.id}>
                     <a
                       href={Href}
@@ -42,8 +42,8 @@ const NavClass = ({ activeToggle }: NavClassProps) => {
                       <span className="title"> {item.title}</span>
                     </a>
                   </NavItem>
-                ))}
-                <NavItem>
+                ))} */}
+                {/* <NavItem>
                   <hr />
                 </NavItem>
                 <NavItem>
@@ -68,7 +68,7 @@ const NavClass = ({ activeToggle }: NavClassProps) => {
                       <span className="title"> {item.title}</span>
                     </a>
                   </NavItem>
-                ))}
+                ))} */}
               </Nav>
             </div>
           </CardBody>

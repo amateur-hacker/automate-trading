@@ -15,29 +15,41 @@ export const SidebarMenu: SidebarMenuInterFace[] = [
   },
 
   {
-    menutitle: "Bookmarks",
+    menutitle: "Dashboard",
     items: [
       {
-        path: `/bookmarks`,
+        path: `/dashboard`,
         icon: <HomeSvg />,
         title: "Dashboard",
         type: "link",
       },
     ],
   },
+
   {
-    menutitle: "Support",
+    menutitle: "Api Secrets",
     items: [
       {
-        title: "Add Api",
+        path: `/add-api`,
         icon: <HomeSvg />,
-        pathSlice: "supportticket",
-        type: "sub",
-        active: false,
-        items: [
-          { path: `/supportticket`, title: "Support Ticket", type: "link" },
-        ],
+        title: "Api Secrets",
+        type: "link",
       },
     ],
   },
+  // {
+  //   menutitle: "Support",
+  //   items: [
+  //     {
+  //       title: "Add Api",
+  //       icon: <HomeSvg />,
+  //       pathSlice: "suHportticket",
+  //       type: "sub",
+  //       active: false,
+  //       items: [
+  //         { path: `/supportticket`, title: "", type: "link" },
+  //       ],
+  //     },
+  //   ],
+  // },
 ];

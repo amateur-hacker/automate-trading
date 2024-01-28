@@ -3,11 +3,13 @@ import { useAppSelector } from "@/Redux/Hooks";
 import { TaskReducerTypes } from "@/Type/Tasks";
 import { Link, MoreHorizontal, Trash2 } from "react-feather";
 import { useDispatch } from "react-redux";
-import { CardBody, Table } from "reactstrap";
+import { CardBody, Table, Button } from "reactstrap";
 import SweetAlert from "sweetalert2";
 
 const CreatedByMe = () => {
-  const { allTask } = useAppSelector((state: TaskReducerTypes) => state.TaskReducer);
+  const { allTask } = useAppSelector(
+    (state: TaskReducerTypes) => state.TaskReducer
+  );
   const dispatch = useDispatch();
   const deleteTask = (userId: number) => {
     SweetAlert.fire({
@@ -30,7 +32,7 @@ const CreatedByMe = () => {
 
   return (
     <CardBody className="p-0">
-      <div className="taskadd">
+      {/* <div className="taskadd">
         <div className="table-responsive table-borderless">
           <Table borderless>
             <thead>
@@ -75,6 +77,14 @@ const CreatedByMe = () => {
               )}
             </tbody>
           </Table>
+        </div>
+      </div> */}
+      <div className="add-api-container">
+        <div className="">
+          <span>Kite</span>
+          <Button outline color="dark">
+           Add Api 
+          </Button>
         </div>
       </div>
     </CardBody>

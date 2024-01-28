@@ -25,25 +25,24 @@ export const SidebarList = ({
       }
     >
       {item.badge && (
-        <Label className={`${item.badgeColor}`}>{item.badgeName} </Label>
+        <Label className={`${item.badgeColor}`}>
+          {item.badgeName} 
+        </Label>
       )}
       <a
         onClick={() => {
           if (item.type == "sub") {
             handleActive(item.pathSlice, level);
           } else {
-            setActiveLink(
-              item.path?.split("/")[item.path.split("/").length - 1]
-            );
-            router.push(`/${i18LangStatus}/${item.path}`);
+            setActiveLink(item.path?.split("/")[1]);
+            router.push(`${item.path}`);
           }
         }}
         className={
           level == 0
             ? `sidebar-link sidebar-title text-decoration-none ${
                 active.includes(item.pathSlice) ||
-                activeLink ==
-                  item.path?.split("/")[item.path.split("/").length - 1]
+                activeLink == item.path?.split("/")[1]
                   ? "active"
                   : ""
               }`
