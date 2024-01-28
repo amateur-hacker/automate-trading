@@ -1,0 +1,76 @@
+.register-header i {
+  margin-right: 1rem;
+}
+.number-input {
+  border-radius: 0 !important;
+}
+.signup-btn {
+  position: relative;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+  overflow: visible;
+}
+
+.signup-btn:after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 4em;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  box-shadow: 0 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.signup-btn:active:after {
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
+  position: absolute;
+  border-radius: 4em;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: 0s;
+}
+
+.signup-btn:active {
+  top: 1px;
+}
+
+.emoji {
+  font-size: 1.2rem;
+}
+
+.user-id {
+  margin-top: 0.2rem;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-items: center;
+}
+
+.flex-1 {
+  flex-grow: 1;
+}
+
+.h-full {
+  height: 100%;
+}
