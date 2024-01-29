@@ -5,6 +5,7 @@ import { deleteRowData } from "@/Type/Table";
 import { SetStateAction, useCallback, useState } from "react";
 import DataTable from "react-data-table-component";
 import { Button, Card, CardBody, Col } from "reactstrap";
+import ExpandedComponent from "./ExpandedComponent";
 
 const RowSelectionAndDeletion = () => {
   const [data, setData] = useState(DeleteRowData);
@@ -35,7 +36,7 @@ const RowSelectionAndDeletion = () => {
               </>
             )}
             <div className="dataTables_wrapper">
-              <DataTable data={data} columns={DeleteDataTableColumns} striped={true} pagination selectableRows onSelectedRowsChange={handleRowSelected} clearSelectedRows={toggleCleared} />
+              <DataTable data={data} columns={DeleteDataTableColumns} striped={true} pagination selectableRows onSelectedRowsChange={handleRowSelected} clearSelectedRows={toggleCleared} expandableRows expandableRowsComponent={ExpandedComponent} />
             </div>
           </div>
         </CardBody>

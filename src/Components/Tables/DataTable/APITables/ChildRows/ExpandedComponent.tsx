@@ -1,7 +1,7 @@
 import { ExtraInfo, ExtraInformation, FullName } from "@/Constant";
 import { ExpandedComponentProps } from "@/Type/Table";
 
-const ExpandedComponent = ({ data }: ExpandedComponentProps) => {
+const ExpandedComponent = ({ data }: any) => {
   return (
     <table cellPadding={5} cellSpacing={0} border={0} style={{ paddingLeft: 50 }}>
       <tbody>

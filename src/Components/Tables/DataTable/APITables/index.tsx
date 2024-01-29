@@ -12,10 +12,10 @@ const APITables = () => {
       <CommonBreadcrumb parent="Data Table" pageTitle="API Data Tables" />
       <Container fluid>
         <Row>
-          <AddRows />
-          <ChildRows />
+          {/* <AddRows /> */}
+          {/* <ChildRows /> */}
           <RowSelectionAndDeletion />
-          <CustomFiltering />
+          {/* <CustomFiltering /> */}
         </Row>
       </Container>
     </>
