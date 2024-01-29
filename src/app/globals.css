@@ -67,6 +67,29 @@
   margin-bottom: 0.7rem;
 }
 
+/* custom-styles.css */
+.custom-table .rdt_Table,
+.custom-table .rdt_TableRow,
+.custom-table .rdt_TableCol,
+.custom-table .rdt_TableCol_Sortable,
+.custom-table .rdt_TableCell,
+.custom-table .rdt_TableHeader,
+.custom-table .rdt_TableFooter,
+.custom-table .rdt_TableHead,
+.custom-table .rdt_TableHeadRow,
+.custom-table .rdt_TableBody,
+.custom-table .rdt_ExpanderRow {
+  background-color: white !important;
+  color: black;
+}
+
+/* .rdt_Table {
+  background-color: white !important;
+} */
+/* .iteyOh {
+  background-color: red;
+} */
+
 .addapi-sidebar {
   position: fixed;
   height: 100%;

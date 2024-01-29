@@ -7,9 +7,9 @@ import {
 } from "@/Data/Table/DataTable";
 import { deleteRowData } from "@/Type/Table";
 import { SetStateAction, useCallback, useState } from "react";
-import DataTable from "react-data-table-component";
 import { Button, Card, CardBody, Col } from "reactstrap";
 import ExpandedComponents from "./ExpandedComponent";
+import DataTable from "react-data-table-component";
 // const columns = [
 // 	{
 // 		name: 'Title',
@@ -24,17 +24,17 @@ const columns = [
   {
     id: "name",
     name: "Name",
-    selector: (row : any) => row.name,
+    selector: (row: any) => row.name,
   },
   {
     id: "age",
     name: "Age",
-    selector: (row : any) => row.age,
+    selector: (row: any) => row.age,
   },
   {
     id: "occupation",
     name: "Occupation",
-    selector: (row : any) => row.occupation,
+    selector: (row: any) => row.occupation,
   },
 ];
 
@@ -46,8 +46,8 @@ const customData = [
   },
 ];
 
-const ExpandedComponent = ({ data }: any) => {
-  const [data1, setData] = useState(customData);
+const ExpandedComponent = () => {
+  const [data, setData] = useState(customData);
   const [selectedRows, setSelectedRows] = useState<deleteRowData[]>([]);
   const [toggleCleared, setToggleCleared] = useState(false);
   const handleRowSelected = useCallback(
@@ -81,11 +81,12 @@ const ExpandedComponent = ({ data }: any) => {
       <div className="table-responsive">
         <div className="dataTables_wrapper">
           <DataTable
-            data={data1}
+            data={data}
             columns={columns}
             clearSelectedRows={toggleCleared}
             expandableRows
             expandableRowsComponent={ExpandedComponents}
+            className="custom-table"
           />
         </div>
       </div>
