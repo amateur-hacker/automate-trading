@@ -24,17 +24,17 @@ const columns = [
   {
     id: "name",
     name: "Name",
-    selector: (row) => row.name,
+    selector: (row : any) => row.name,
   },
   {
     id: "age",
     name: "Age",
-    selector: (row) => row.age,
+    selector: (row : any) => row.age,
   },
   {
     id: "occupation",
     name: "Occupation",
-    selector: (row) => row.occupation,
+    selector: (row : any) => row.occupation,
   },
 ];
 
@@ -66,7 +66,7 @@ const ExpandedComponent = ({ data }: any) => {
     ) {
       setToggleCleared(!toggleCleared);
       setData(
-        data.filter((item) =>
+        data.filter((item: any) =>
           selectedRows.filter((elem: deleteRowData) => elem.id === item.id)
             .length > 0
             ? false
