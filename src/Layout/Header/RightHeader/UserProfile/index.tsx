@@ -17,6 +17,7 @@ const UserProfile = () => {
   const { i18LangStatus } = useAppSelector((store) => store.langSlice);
   const [userId, setUserId] = useState("");
   const [userName, setUsername] = useState("");
+  const [isFullUsername, setIsFullUsername] = useState(false);
   const router = useRouter();
   // const LogOutUser = () => {
   //   Cookies.remove("token");
@@ -71,6 +72,10 @@ const UserProfile = () => {
     setUserId(userIdCookie);
   }, []);
 
+  const handleUsernameClick = () => {
+    setIsFullUsername(!isFullUsername);
+  };
+
   return (
     <li className="profile-nav onhover-dropdown pe-0 py-0 me-0">
       <Media className="profile-media">
@@ -80,11 +85,33 @@ const UserProfile = () => {
           height={40}
           width={40}
         />
-        <Media className="flex flex-col items-center justify-center" body>
-          <span>{userId ? userName : "loading..."}</span>
-          <span className="user-id font-bold">
-            {userId ? `ID: ${userId}` : "loading..."}
-          </span>
+        <Media
+          className="flex flex-col items-center justify-center"
+          body
+          onClick={handleUsernameClick}
+        >
+          {userName && userId ? (
+            <>
+              <span>
+                {isFullUsername
+                  ? userName
+                  : userName.length > 10
+                  ? `${userName.slice(0, 10)}...`
+                  : userName}
+              </span>
+              <span className="user-id font-bold">ID: {userId}</span>
+            </>
+          ) : (
+            <>
+              {/* <Image
+                src={loadingSvg}
+                alt="loading svg"
+                height={40}
+                width={40}
+              /> */}
+              <span>Loading...</span>
+            </>
+          )}
         </Media>
       </Media>
       <ul className="profile-dropdown onhover-show-div">
