@@ -11,6 +11,7 @@ import DataTable from "react-data-table-component";
 import { Button, Card, CardBody, Col } from "reactstrap";
 import ExpandedComponent from "./ExpandedComponent";
 import ModalButton from "./Common/ModalButton";
+import { ChevronDown, ChevronRight } from "react-feather";
 
 const RowSelectionAndDeletion = () => {
   const [data, setData] = useState(DeleteRowData);
@@ -64,7 +65,7 @@ const RowSelectionAndDeletion = () => {
               </>
             )}
 
-            <ModalButton  btnText="Edit And Delete" defaultVal="@Mat" />
+            <ModalButton btnText="Edit And Delete" defaultVal="@Mat" />
 
             <div className="dataTables_wrapper">
               <DataTable
@@ -75,6 +76,10 @@ const RowSelectionAndDeletion = () => {
                 selectableRows
                 onSelectedRowsChange={handleRowSelected}
                 clearSelectedRows={toggleCleared}
+                expandableIcon={{
+                  collapsed: <ChevronRight className="chevron" />,
+                  expanded: <ChevronDown className="chevron" />,
+                }}
                 expandableRows
                 expandableRowsComponent={ExpandedComponent}
               />

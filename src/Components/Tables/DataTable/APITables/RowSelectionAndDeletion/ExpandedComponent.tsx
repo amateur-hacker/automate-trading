@@ -9,7 +9,8 @@ import { deleteRowData } from "@/Type/Table";
 import { SetStateAction, useCallback, useState } from "react";
 import { Button, Card, CardBody, Col } from "reactstrap";
 import ExpandedComponents from "./ExpandedComponent";
-import DataTable from "react-data-table-component";
+import DataTable, { createTheme } from "react-data-table-component";
+import { ChevronDown, ChevronRight } from "react-feather";
 // const columns = [
 // 	{
 // 		name: 'Title',
@@ -20,6 +21,31 @@ import DataTable from "react-data-table-component";
 // 		selector: row => row.year,
 // 	},
 // ];
+createTheme(
+  "solarized",
+  {
+    // text: {
+    //   primary: "#268bd2",
+    //   secondary: "#2aa198",
+    // },
+    background: {
+      default: "#002b36",
+    },
+    context: {
+      // background: "#cb4b16",
+      // text: "#FFFFFF",
+    },
+    // divider: {
+    //   default: "#073642",
+    // },
+    // action: {
+    //   button: "rgba(0,0,0,.54)",
+    //   hover: "rgba(0,0,0,.08)",
+    //   disabled: "rgba(0,0,0,.12)",
+    // },
+  },
+  "dark"
+);
 const columns = [
   {
     id: "name",
@@ -86,6 +112,10 @@ const ExpandedComponent = () => {
             clearSelectedRows={toggleCleared}
             expandableRows
             expandableRowsComponent={ExpandedComponents}
+            expandableIcon={{
+              collapsed: <ChevronRight className="chevron" />,
+              expanded: <ChevronDown className="chevron" />,
+            }}
             className="custom-table"
           />
         </div>

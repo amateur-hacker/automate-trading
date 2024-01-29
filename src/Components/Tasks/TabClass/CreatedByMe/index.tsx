@@ -105,11 +105,11 @@ const CreatedByMe = () => {
       const authToken = Cookies?.get("authtoken");
       console.log(authToken);
 
-      const response = await fetch("https://nextlevelpine.com/add-api", {
+      const response = await fetch("https://nextlevelpine.com/get-api", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `${authToken ?? ""}`,
+          Authorization: authToken ?? "",
         },
         body: JSON.stringify({
           ApiType: "1",

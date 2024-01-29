@@ -879,6 +879,23 @@ body {
         }
       }
     }
+    .custom-table .rdt_Table,
+    .custom-table .rdt_TableRow,
+    .custom-table .rdt_TableCol,
+    .custom-table .rdt_TableCol_Sortable,
+    .custom-table .rdt_TableCell,
+    .custom-table .rdt_TableHeader,
+    .custom-table .rdt_TableFooter,
+    .custom-table .rdt_TableHead,
+    .custom-table .rdt_TableHeadRow,
+    .custom-table .rdt_TableBody,
+    .custom-table .rdt_ExpanderRow {
+      background-color:  #262932 !important;
+    }
+
+    .chevron {
+      color: white !important;
+    }
     .product-table {
       .rdt_TableHead {
         .rdt_TableHeadRow {

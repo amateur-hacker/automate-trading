@@ -9,11 +9,14 @@ import { useRouter } from "next/navigation";
 import { LogOut } from "react-feather";
 import { Media } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { decryptData } from "@/Config/decryptData";
+import loadingSvg from "../../../../../public/assets/images/loading.svg";
 
 const UserProfile = () => {
   const { i18LangStatus } = useAppSelector((store) => store.langSlice);
   const [userId, setUserId] = useState("");
+  const [userName, setUsername] = useState("");
   const router = useRouter();
   // const LogOutUser = () => {
   //   Cookies.remove("token");
@@ -34,8 +37,37 @@ const UserProfile = () => {
     }
   };
 
+  const handleGetProfile = useCallback(async () => {
+    try {
+      const authToken = Cookies?.get("authtoken");
+      console.log(authToken);
+
+      const response = await fetch(
+        "https://nextlevelpine.com/get-user-profile",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authToken ?? "",
+          },
+        }
+      );
+
+      const data = await response.text();
+      const decryptedResponse = decryptData(data);
+      const jsonResponse = JSON.parse(decryptedResponse);
+
+      setUsername(jsonResponse[0]?.Username);
+      console.log(jsonResponse);
+    } catch (error) {
+      console.log(`Error coming from addApi function: ${error.message}`);
+    }
+  }, []);
+
   useEffect(() => {
     const userIdCookie = Cookies?.get("userid") || "";
+
+    handleGetProfile();
     setUserId(userIdCookie);
   }, []);
 
@@ -43,14 +75,16 @@ const UserProfile = () => {
     <li className="profile-nav onhover-dropdown pe-0 py-0 me-0">
       <Media className="profile-media">
         <Image
-          src={`${ImagePath}/avtar/man.png`}
+          src={`${ImagePath}/default-profile.png`}
           alt="profile image"
           height={40}
           width={40}
         />
         <Media className="flex flex-col items-center justify-center" body>
-          {/* <span>Emay Walter</span> */}
-          <span className="user-id font-bold">ID: {userId}</span>
+          <span>{userId ? userName : "loading..."}</span>
+          <span className="user-id font-bold">
+            {userId ? `ID: ${userId}` : "loading..."}
+          </span>
         </Media>
       </Media>
       <ul className="profile-dropdown onhover-show-div">
