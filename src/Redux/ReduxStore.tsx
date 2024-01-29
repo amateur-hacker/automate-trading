@@ -15,6 +15,7 @@ import themeSlice from "./Slices/ThemeCostomizer";
 import { TodoReducer } from "./Slices/TodoReducer";
 import TypeaheadSlice from "./Slices/TypeaheadSlice";
 import langSlice from "./Slices/language";
+import addApiReducer from "./CustomSlices/AddApiSlice";
 
 const Store = configureStore({
   reducer: {
@@ -33,6 +34,7 @@ const Store = configureStore({
     themeSlice,
     BookMarkReducer,
     langSlice,
+    addApi: addApiReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

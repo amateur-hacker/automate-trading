@@ -7,7 +7,7 @@ const Header = () => {
   const sideBarToggle = useSelector((store: RootState) => store.headerSlice.sidebarToggle);
   return (
     <div className={`page-header ${sideBarToggle}`} id="page-header">
-      <Row className="header-wrapper m-0">
+      <Row className="header-wrapper m-0 justify-content-between">
         <LeftHeader />
         <RightHeader />
       </Row>

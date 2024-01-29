@@ -9,9 +9,8 @@ import {
   TaskTitle,
 } from "@/Constant";
 import { useState } from "react";
-import { CheckCircle } from "react-feather";
+import { CheckCircle, Key, ArrowLeft } from "react-feather";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import {
   Button,
   Col,
@@ -23,6 +22,9 @@ import {
   ModalBody,
   Row,
 } from "reactstrap";
+import { updateApiButtonClicked } from "@/Redux/CustomSlices/AddApiSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/Redux/ReduxStore";
 
 const NewTaskClass = () => {
   const {
@@ -35,6 +37,8 @@ const NewTaskClass = () => {
     setAddModal(!addModal);
   };
   const dispatch = useDispatch();
+
+  const addApi = useSelector((state: RootState) => state.addApi);
 
   const AddTasks = (data: any) => {
     console.log(data, "data");
@@ -49,9 +53,22 @@ const NewTaskClass = () => {
       <Button
         color="primary"
         className="badge-light btn-block btn-mail w-100"
-        onClick={addToggle}
+        // onClick={addToggle}
+        onClick={() =>
+          dispatch(updateApiButtonClicked(!addApi.apiButtonClicked))
+        }
       >
-        <CheckCircle className="me-2" /> Add Api
+        {addApi.apiButtonClicked ? (
+          <>
+            <ArrowLeft className="me-2" />
+            Back
+          </>
+        ) : (
+          <>
+            <Key className="me-2" />
+            Add Api
+          </>
+        )}
       </Button>
       <Modal isOpen={addModal} toggle={addToggle} size="lg">
         <div className="modal-header">

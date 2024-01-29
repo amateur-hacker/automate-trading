@@ -1,7 +1,7 @@
 import { SidebarMenu } from "@/Data/Sidebar";
 import { RootState } from "@/Redux/ReduxStore";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight } from "react-feather";
 import { useSelector } from "react-redux";
 import { SidebarFooter } from "./SidebarFooter";
@@ -18,10 +18,14 @@ import {
   Modal,
   ModalBody,
   Row,
+  Offcanvas,
+  OffcanvasHeader,
+  OffcanvasBody,
 } from "reactstrap";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie";
 
 const Sidebar = () => {
   const [sidebarMargin, setSidebarMargin] = useState(0);
@@ -29,6 +33,7 @@ const Sidebar = () => {
   const [apiName, setApiName] = useState("");
   const [apiKey, setApiKey] = useState("");
   const [apiSecretKey, setApiSecretKey] = useState("");
+  const [addApiSideBarToggle, setAddApiSideBarToggle] = useState(false);
   const sideBarToggle = useSelector(
     (store: RootState) => store.headerSlice.sidebarToggle
   );
@@ -89,10 +94,15 @@ const Sidebar = () => {
   const handleAddApi = async (e: any) => {
     try {
       e.preventDefault();
-      const response = await fetch("https://nextlevelpine.com/nlbweb/add-api", {
+
+      const authToken = Cookies?.get("authtoken");
+      console.log(authToken);
+
+      const response = await fetch("https://nextlevelpine.com/add-api", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `${authToken ?? ""}`,
         },
         body: JSON.stringify({
           ApiType: "1",
@@ -102,83 +112,117 @@ const Sidebar = () => {
         }),
       });
 
-      const data = await response.json();
-      if (data.message.includes("email already exists")) {
-        toast.error("Email Already Exist");
-        const emailInput = document.getElementById("email") as HTMLInputElement;
-        emailInput.focus();
-        emailInput.scrollIntoView();
-        return;
-      }
-      const wait = (milliseconds: number): Promise<void> => {
-        return new Promise((resolve) => setTimeout(resolve, milliseconds));
-      };
+      // const data = await response.text();
+      // console.log(data);
 
-      await toast.promise(wait(1500), {
-        pending: "Signing up",
-        success: "Signup Successfully 👌",
-        error: "Error While Signing up 🤯",
-      });
+      const data = await response.text();
+      console.log(data);
+      toast(data);
+      // if (response.ok) {
+      // } else {
+      //   console.log(`Error: ${response.status} - ${response.statusText}`);
+      // }
     } catch (error) {
-      console.log(`Error coming from registerUser function: ${error.message}`);
+      console.log(`Error coming from addApi function: ${error.message}`);
     }
+  };
+
+  const handleResetForm = (e: any) => {
+    e.preventDefault();
+    setApiType("");
+    setApiName("");
+    setApiKey("");
+    setApiSecretKey("");
   };
 
   return (
     <div className={`sidebar-wrapper ${sideBarToggle}`} id="sidebar-wrapper">
-      <div className="addapi-sidebar">
-        <ModalBody>
-          <div className="modal-header">
-            <h5 className="modal-title">Add API</h5>
-            <Button color="transprant" className="btn-close"></Button>
-          </div>
-          <Form
-            className="form-bookmark needs-validation mt-4"
-            onSubmit={handleAddApi}
+      {/* <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        newestOnTop={false}
+        pauseOnHover={false}
+        theme="dark"
+      /> */}
+      {/* <div>
+        <Button
+          color="primary"
+          onClick={() => setAddApiSideBarToggle(!addApiSideBarToggle)}
+        >
+          Open
+        </Button>
+        <Offcanvas
+          direction="end"
+          isOpen={addApiSideBarToggle}
+          // unmountOnClose={addApiSideBarToggle}
+
+          toggle={() => setAddApiSideBarToggle(!addApiSideBarToggle)}
+          autoFocus
+          keyboard={true}
+        >
+          <OffcanvasHeader
+            toggle={() => setAddApiSideBarToggle(!addApiSideBarToggle)}
           >
-            <Row>
-              <Col md="12">
-                <FormGroup>
-                  <Label>App Name</Label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="ADD APP NAME"
-                    required
-                  />
-                </FormGroup>
-              </Col>
-              <Col md="12">
-                <FormGroup>
-                  <Label>Api Key</Label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="ADD API Key"
-                    required
-                  />
-                </FormGroup>
-              </Col>
-              <Col md="12">
-                <FormGroup>
-                  <Label>Secret Key</Label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="ADD SECRET KEY"
-                    required
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Button color="outline-dark" className="me-1">
-              Save Zerodha
-            </Button>
-            &nbsp;&nbsp;
-            <Button color="outline-primary">Reset</Button>
-          </Form>
-        </ModalBody>
-      </div>
+            Add API
+          </OffcanvasHeader>
+          <OffcanvasBody>
+            <Form
+              className="form-bookmark needs-validation mt-4"
+              onSubmit={handleAddApi}
+            >
+              <Row>
+                <Col md="12">
+                  <FormGroup>
+                    <Label>App Name</Label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="ADD APP NAME"
+                      required
+                      value={apiName}
+                      onChange={(e) => setApiName(e.target.value)}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md="12">
+                  <FormGroup>
+                    <Label>Api Key</Label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="ADD API KEY"
+                      required
+                      value={apiKey}
+                      onChange={(e) => setApiKey(e.target.value)}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md="12">
+                  <FormGroup>
+                    <Label>Secret Key</Label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="ADD SECRET KEY"
+                      required
+                      value={apiSecretKey}
+                      onChange={(e) => setApiSecretKey(e.target.value)}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Button color="outline-dark" className="me-1">
+                Save API
+              </Button>
+              &nbsp;&nbsp;
+              <Button color="primary" onClick={handleResetForm}>
+                Reset
+              </Button>
+            </Form>
+          </OffcanvasBody>
+        </Offcanvas>
+      </div> */}
+      
       <div>
         <SidebarLogo />
         <nav className="sidebar-main hovered">

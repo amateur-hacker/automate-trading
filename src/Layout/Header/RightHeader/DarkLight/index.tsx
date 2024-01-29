@@ -8,7 +8,7 @@ const DarkLight = () => {
   const { backgroundChange } = useAppSelector((store) => store.headerSlice);
   const backgroundToggler = () => {
     dispatch(setBackground(!backgroundChange));
-    if (!backgroundChange) {
+    if (backgroundChange) {
       document.body.classList.add("dark-only");
       document.body.classList.remove("light");
     } else {
@@ -19,7 +19,7 @@ const DarkLight = () => {
   return (
     <li>
       <div className="mode animated backOutRight" onClick={backgroundToggler}>
-        {!backgroundChange ? <DayLightSvg /> : <MoonlightSvg />}
+        {backgroundChange ? <DayLightSvg /> : <MoonlightSvg />}
       </div>
     </li>
   );

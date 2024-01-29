@@ -1,5 +1,6 @@
 import { SidebarMenuInterFace } from "@/Type/Sidebar";
 import { HomeSvg } from "../../svgIcons";
+import { Settings, Link } from "react-feather";
 
 export const SidebarMenu: SidebarMenuInterFace[] = [
   {
@@ -19,7 +20,7 @@ export const SidebarMenu: SidebarMenuInterFace[] = [
     items: [
       {
         path: `/dashboard`,
-        icon: <HomeSvg />,
+        icon: <Settings />,
         title: "Dashboard",
         type: "link",
       },
@@ -31,8 +32,8 @@ export const SidebarMenu: SidebarMenuInterFace[] = [
     items: [
       {
         path: `/add-api`,
-        icon: <HomeSvg />,
-        title: "Api Secrets",
+        icon: <Link />,
+        title: "Api Details",
         type: "link",
       },
     ],

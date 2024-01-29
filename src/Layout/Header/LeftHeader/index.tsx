@@ -6,7 +6,7 @@ const LeftHeader = () => {
   return (
     <>
       <ToggleIcon />
-      <SearchBar />
+      {/* <SearchBar /> */}
     </>
   );
 };

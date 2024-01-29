@@ -34,7 +34,7 @@ export default function RootLayout({
           rel="stylesheet"
         ></link>
       </head>
-      <body id="mainBody" className="light">
+      <body id="mainBody" className="dark-only">
         <MainProvider>{children}</MainProvider>
       </body>
     </html>
