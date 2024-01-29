@@ -79,8 +79,7 @@
 .custom-table .rdt_TableHeadRow,
 .custom-table .rdt_TableBody,
 .custom-table .rdt_ExpanderRow {
-  background-color: white !important;
-  color: black;
+  background-color:  #262932 !important;
 }
 
 /* .rdt_Table {
