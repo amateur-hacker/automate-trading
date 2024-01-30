@@ -6,12 +6,13 @@ import {
 } from "@/Data/Table/DataTable";
 import { SetStateAction, useCallback, useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
-import { Button, Card, CardBody, Col } from "reactstrap";
+import { Button, Card, CardBody, Col, Row } from "reactstrap";
 import ExpandedComponent from "./ExpandedComponent";
 import ModalButton from "./Common/ModalButton";
 import { ChevronDown, ChevronRight } from "react-feather";
 import Cookies from "js-cookie";
 import showApiDataModal from "./tableApiDataShowModel";
+import { DeleteRowData } from "@/Data/Table/DataTable";
 
 import CommonModal from "./CommonModal";
 import { Modal, ScrollingLongContent } from "@/Constant";
@@ -19,13 +20,12 @@ import { ScrollButtonData } from "@/Data/UiKits/Modal";
 import React, { Fragment } from "react";
 import ReactJson from "react-json-view";
 import SimpleMaterialTabs from "./SimpleMaterialTabs";
-import {Nav} from "reactstrap";
+import { Nav } from "reactstrap";
 import CommonTabNav from "./CommonTabNav";
 
-
 const RowSelectionAndDeletion = () => {
-  const [data, setData] = useState([]);
-  const [selectedRows, setSelectedRows] = useState([]);
+  const [data, setData] = useState<any[]>([]);
+  const [selectedRows, setSelectedRows] = useState<any[]>([]);
   const [toggleCleared, setToggleCleared] = useState(false);
 
   const [rowClicked, setRowClicked] = useState(false);
@@ -121,21 +121,41 @@ const RowSelectionAndDeletion = () => {
   //   setSelectedRows(state.selectedRows);
   // }, []);
 
+  // const handleDelete = () => {
+  //   if (
+  //     window.confirm(
+  //       `Are you sure you want to delete:\r ${selectedRows.map(
+  //         (r: deleteRowData) => r.name
+  //       )}?`
+  //     )
+  //   ) {
+  //     setToggleCleared(!toggleCleared);
+  //     setData(
+  //       data.filter((item) =>
+  //         selectedRows.filter((elem: deleteRowData) => elem.id === item.id)
+  //           .length > 0
+  //           ? false
+  //           : true
+  //       )
+  //     );
+  //     setSelectedRows([]);
+  //   }
+  // };
+
   const handleDelete = () => {
     if (
       window.confirm(
-        `Are you sure you want to delete:\r ${selectedRows.map(
-          (r: deleteRowData) => r.name
-        )}?`
+        `Are you sure you want to delete:\r ${selectedRows
+          .map((row: any) => row.s_No)
+          .join(", ")}?`
       )
     ) {
       setToggleCleared(!toggleCleared);
-      setData(
-        data.filter((item) =>
-          selectedRows.filter((elem: deleteRowData) => elem.id === item.id)
-            .length > 0
-            ? false
-            : true
+      setData((prevData) =>
+        prevData.filter((item) =>
+          selectedRows.every(
+            (selectedRow: any) => selectedRow.s_No !== item.s_No
+          )
         )
       );
       setSelectedRows([]);
@@ -197,6 +217,7 @@ const RowSelectionAndDeletion = () => {
           subHeading={RowsSelectionAndDeletionSubHeading}
         />
 
+        <p>Clicked cell data</p>
         {selectedRowData && (
           <Fragment>
             <CommonModal
