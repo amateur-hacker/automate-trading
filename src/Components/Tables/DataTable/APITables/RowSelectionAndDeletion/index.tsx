@@ -9,14 +9,14 @@ import DataTable from "react-data-table-component";
 import { Button, Card, CardBody, Col, Row } from "reactstrap";
 // import ExpandedComponent from "./ExpandedComponent";
 import ModalButton from "./Common/ModalButton";
-import { ChevronDown, ChevronRight } from "react-feather";
+// import { ChevronDown, ChevronRight } from "react-feather";
 import Cookies from "js-cookie";
 // import showApiDataModal from "./tableApiDataShowModel";
 // import { DeleteRowData } from "@/Data/Table/DataTable";
 
 import CommonModal from "./CommonModal";
-import { Modal, ScrollingLongContent } from "@/Constant";
-import { ScrollButtonData } from "@/Data/UiKits/Modal";
+// import { Modal, ScrollingLongContent } from "@/Constant";
+// import { ScrollButtonData } from "@/Data/UiKits/Modal";
 import React, { Fragment } from "react";
 import ReactJson from "react-json-view";
 // import SimpleMaterialTabs from "./SimpleMaterialTabs";
@@ -217,7 +217,7 @@ const RowSelectionAndDeletion = () => {
           subHeading={RowsSelectionAndDeletionSubHeading}
         />
 
-        {selectedRowData && (
+        {/* {selectedRowData && (
           <Fragment>
             <CommonModal
               isOpen={rowClicked}
@@ -235,7 +235,7 @@ const RowSelectionAndDeletion = () => {
               </div>
             </CommonModal>
           </Fragment>
-        )}
+        )} */}
 
         <CardBody>
           <Nav className="border-tab" tabs>
