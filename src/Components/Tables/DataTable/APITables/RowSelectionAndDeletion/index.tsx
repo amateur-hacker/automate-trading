@@ -224,7 +224,7 @@ const RowSelectionAndDeletion = () => {
             toggler={ScrollModalToggle}
           >
             <div className="overflow-auto">
-              {selectedRowData}
+              {JSON.stringify(selectedRowData)}
               {/* <ReactJson
                 src={selectedRowData}
                 theme="codeschool"
