@@ -31,7 +31,7 @@ const RowSelectionAndDeletion = () => {
   const [rowClicked, setRowClicked] = useState(false);
   const ScrollModalToggle = () => setRowClicked(!rowClicked);
 
-  const [selectedRowData, setSelectedRowData] = useState(null);
+  const [selectedRowData, setSelectedRowData] = useState({});
   const [isModalOpen, setModalOpen] = useState(false);
 
   const [basicLineTab, setBasicLineTab] = useState("1");
@@ -224,15 +224,13 @@ const RowSelectionAndDeletion = () => {
             toggler={ScrollModalToggle}
           >
             <div className="overflow-auto">
-              {selectedRowData && (
-                <ReactJson
-                  src={selectedRowData}
-                  theme="codeschool"
-                  displayDataTypes={false}
-                  displayObjectSize={false}
-                  collapsed={false}
-                />
-              )}
+              <ReactJson
+                src={selectedRowData}
+                theme="codeschool"
+                displayDataTypes={false}
+                displayObjectSize={false}
+                collapsed={false}
+              />
             </div>
           </CommonModal>
         </Fragment>
