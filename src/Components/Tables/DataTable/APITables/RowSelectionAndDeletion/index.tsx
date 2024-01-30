@@ -302,10 +302,11 @@ export default async function SSR() {
       {Object.entries(data).map(([key, value]) => (
         <div key={key}>
           <strong>{key}:</strong>
-          {typeof value === "object" ? (
+          {typeof value === "object" && (
             <pre>{JSON.stringify(value, null, 2)}</pre>
-          ) : (
-            <span>{value}</span>
+            // ) : (
+            //   <span>{value}</span>
+            // )}
           )}
         </div>
       ))}
