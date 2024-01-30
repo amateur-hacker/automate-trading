@@ -278,19 +278,18 @@
 
 import Cookies from "js-cookie";
 const getRandomNumber = async () => {
-  const response = await fetch("https://dummyjson.com/products");
-  const data = await response.json();
+  // const response = await fetch("https://api.github.com/repos/vercel/next.js")
+  // const data = await response.json()
 
-  // const authToken = Cookies?.get("authtoken");
-  // const response = await fetch("https://nextlevelpine.com/get-webhook-logs", {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Authorization: authToken ?? "",
-  //   },
-  // });
-  // return response.text();
-  return data;
+  const authToken = Cookies?.get("authtoken");
+  const response = await fetch("https://nextlevelpine.com/get-webhook-logs", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: authToken ?? "",
+    },
+  });
+  return response.text();
 };
 
 export default async function SSR() {
@@ -299,7 +298,7 @@ export default async function SSR() {
 
   return (
     <main>
-      {Object.entries(data).map(([key, value]) => (
+      {Object.entries(JSON.parse(data)).map(([key, value]) => (
         <div key={key}>
           <strong>{key}:</strong>
           {typeof value === "object" && (
