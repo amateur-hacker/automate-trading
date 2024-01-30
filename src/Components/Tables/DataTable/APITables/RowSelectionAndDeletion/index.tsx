@@ -217,7 +217,7 @@ const RowSelectionAndDeletion = () => {
           subHeading={RowsSelectionAndDeletionSubHeading}
         />
 
-        {rowClicked ? (
+        {rowClicked && typeof window !== "undefined" && (
           <Fragment>
             <CommonModal
               isOpen={rowClicked}
@@ -235,7 +235,7 @@ const RowSelectionAndDeletion = () => {
               </div>
             </CommonModal>
           </Fragment>
-        ) : null}
+        )}
 
         <CardBody>
           <Nav className="border-tab" tabs>
