@@ -217,24 +217,14 @@ const RowSelectionAndDeletion = () => {
           subHeading={RowsSelectionAndDeletionSubHeading}
         />
 
-        {rowClicked && (
-          <Fragment>
-            <CommonModal
-              isOpen={rowClicked}
-              title="Selected Row Data"
-              toggler={ScrollModalToggle}
-            >
-              <div className="overflow-auto">
-                <ReactJson
-                  src={selectedRowData}
-                  theme="codeschool"
-                  displayDataTypes={false}
-                  displayObjectSize={false}
-                  collapsed={false}
-                />
-              </div>
-            </CommonModal>
-          </Fragment>
+        {typeof window !== "undefined" && (
+          <ReactJson
+            src={selectedRowData ? selectedRowData : {}}
+            theme="codeschool"
+            displayDataTypes={false}
+            displayObjectSize={false}
+            collapsed={false}
+          />
         )}
 
         <CardBody>
