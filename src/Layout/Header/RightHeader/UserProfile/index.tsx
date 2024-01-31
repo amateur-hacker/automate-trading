@@ -9,11 +9,11 @@ import { useRouter } from "next/navigation";
 import { LogOut } from "react-feather";
 import { Media } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
-import { useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { decryptData } from "@/Config/decryptData";
 import loadingSvg from "../../../../../public/assets/images/loading.svg";
 
-const UserProfile = () => {
+const UserProfile = memo(() => {
   const { i18LangStatus } = useAppSelector((store) => store.langSlice);
   const [userId, setUserId] = useState("");
   const [userName, setUsername] = useState("");
@@ -132,6 +132,6 @@ const UserProfile = () => {
       </ul>
     </li>
   );
-};
+});
 
 export default UserProfile;
