@@ -64,42 +64,43 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     }, 2000);
   }, []);
 
+  // ... (previous code)
+
   return (
     <>
-      {/* Show loading overlay if loading is true */}
-
+      {loading && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 9999,
+            background: "lightgray",
+            opacity: 0.8, // Adjust opacity as needed
+          }}
+        >
+          <div
+            style={{
+              height: "3px",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "0%",
+              background: "linear-gradient(to right, red, yellow, green)",
+              animation: "progressAnimation 6s ease-in-out",
+            }}
+          ></div>
+        </div>
+      )}
       {/* The main content */}
+
       <div className={`page-wrapper ${sidebarWrapper}`} id="page-wrapper">
         <Header />
         <div className="page-body-wrapper">
           <Sidebar />
-          <div className="page-body" style={{position: "relative"}}>
-            {loading && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  background: "black",
-                  color: "white",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  zIndex: 9999, // Adjust the z-index as needed
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "1.5rem",
-                    animation: "loadingAnimation 1s infinite",
-                  }}
-                >
-                  Loading...
-                </div>
-              </div>
-            )}
+          <div className="page-body">
             {children}
             <ToastContainer />
           </div>
@@ -107,8 +108,30 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
       <ThemeCustomizer />
+
+      {/* Add keyframes for progressAnimation */}
+      <style>
+        {`
+        @keyframes progressAnimation {
+          0% {
+            width: 0%;
+          }
+          25% {
+            width: 25%;
+          }
+          50% {
+            width: 50%;
+          }
+          75% {
+            width: 75%;
+          }
+          100% {
+            width: 100%;
+          }
+        }
+      `}
+      </style>
     </>
   );
 };
-
 export default Layout;
