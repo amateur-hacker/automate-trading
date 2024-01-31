@@ -23,9 +23,13 @@ import ReactJson from "react-json-view";
 import { Nav } from "reactstrap";
 import CommonTabNav from "./CommonTabNav";
 import { toast } from "react-toastify";
-import { memo } from "react";
+import { setWebHookLogs } from "@/Redux/CustomSlices/WebHookSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-const WebHookLogs = React.memo(() => {
+import { memo } from "react";
+import { RootState } from "@/Redux/ReduxStore";
+
+const WebHookLogs = memo(() => {
   const [data, setData] = useState<any[]>([]);
   const [selectedRows, setSelectedRows] = useState<any[]>([]);
   const [toggleCleared, setToggleCleared] = useState(false);
@@ -37,6 +41,8 @@ const WebHookLogs = React.memo(() => {
   const [selectedCellData, setSelectedCellData] = useState();
   const [selectedColumnName, setSelectedColumnName] = useState("");
   const [isModalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const webHookLogs = useSelector((state: RootState) => state.webHook?.webHookLogs);
 
   const [basicLineTab, setBasicLineTab] = useState("1");
   const [CopysuccessMessage, setCopysuccessMessage] = useState("");
@@ -189,7 +195,8 @@ const WebHookLogs = React.memo(() => {
         data_Intime: item.data_Intime !== null ? item.data_Intime : "null",
         data_Outtime: item.data_Outtime !== null ? item.data_Outtime : "null",
       }));
-      setData(transformedData);
+      // setData(transformedData);
+      dispatch(setWebHookLogs(transformedData));
     } catch (error) {
       console.log(
         `Error coming from handleGetWebHookLogs function: ${error.message}`
@@ -233,7 +240,13 @@ const WebHookLogs = React.memo(() => {
           }}
         >
           <pre className="p-3">{selectedCellData}</pre>
-          <Button className="signup-btn me-2" color="primary" onClick={handleCopyClick}>Copy</Button>
+          <Button
+            className="signup-btn me-2"
+            color="primary"
+            onClick={handleCopyClick}
+          >
+            Copy
+          </Button>
           <span>{CopysuccessMessage}</span>
         </CommonModal>
       </Fragment>
@@ -251,7 +264,7 @@ const WebHookLogs = React.memo(() => {
 
         <div className="dataTables_wrapper">
           <DataTable
-            data={data}
+            data={webHookLogs}
             columns={webHookColumns}
             striped={true}
             pagination

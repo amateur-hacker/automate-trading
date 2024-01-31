@@ -16,6 +16,7 @@ import { TodoReducer } from "./Slices/TodoReducer";
 import TypeaheadSlice from "./Slices/TypeaheadSlice";
 import langSlice from "./Slices/language";
 import addApiReducer from "./CustomSlices/AddApiSlice";
+import WebHookReducer from "./CustomSlices/WebHookSlice";
 
 const Store = configureStore({
   reducer: {
@@ -35,6 +36,7 @@ const Store = configureStore({
     BookMarkReducer,
     langSlice,
     addApi: addApiReducer,
+    webHook: WebHookReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
