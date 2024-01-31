@@ -9,8 +9,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import Cookies from "js-cookie";
-import Loader from "./loading";
-import "../globals.css";
 // import "@/app/globals.css"
 
 // Define the layout component
@@ -63,21 +61,49 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 2000);
   }, []);
 
   return (
     <>
-      {loading && <Loader />}
+      {/* Show loading overlay if loading is true */}
 
+      {/* The main content */}
       <div className={`page-wrapper ${sidebarWrapper}`} id="page-wrapper">
         <Header />
         <div className="page-body-wrapper">
           <Sidebar />
-          <div className="page-body">
+          <div className="page-body" style={{position: "relative"}}>
+            {loading && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  background: "black",
+                  color: "white",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  zIndex: 9999, // Adjust the z-index as needed
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "1.5rem",
+                    animation: "loadingAnimation 1s infinite",
+                  }}
+                >
+                  Loading...
+                </div>
+              </div>
+            )}
             {children}
             <ToastContainer />
           </div>
+          {/* <Footer /> */}
         </div>
       </div>
       <ThemeCustomizer />
