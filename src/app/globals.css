@@ -69,7 +69,6 @@
 
 /* custom-styles.css */
 
-
 /* .rdt_Table {
   background-color: white !important;
 } */
@@ -89,12 +88,31 @@
   box-shadow: 0 0 10px 1px rgba(68, 102, 242, 0.05);
 }
 
+.nav-link {
+  padding: 10px 10px !important;
+}
+
 .relative {
   position: relative !important;
 }
 
 .user-id {
   margin-top: 0.2rem;
+}
+
+@keyframes loadingAnimation {
+  0% {
+    content: "Loading";
+  }
+  25% {
+    content: "Loading.";
+  }
+  50% {
+    content: "Loading..";
+  }
+  75% {
+    content: "Loading...";
+  }
 }
 
 .inline-block {

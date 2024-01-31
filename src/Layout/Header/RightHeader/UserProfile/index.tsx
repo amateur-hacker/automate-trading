@@ -59,17 +59,14 @@ const UserProfile = memo(() => {
       const jsonResponse = JSON.parse(decryptedResponse);
 
       setUsername(jsonResponse[0]?.Username);
-      console.log(jsonResponse);
+      setUserId(jsonResponse[0]?.Id);
     } catch (error) {
       console.log(`Error coming from addApi function: ${error.message}`);
     }
   }, []);
 
   useEffect(() => {
-    const userIdCookie = Cookies?.get("userid") || "";
-
     handleGetProfile();
-    setUserId(userIdCookie);
   }, []);
 
   const handleUsernameClick = () => {
@@ -90,7 +87,19 @@ const UserProfile = memo(() => {
           body
           onClick={handleUsernameClick}
         >
+            {/* <>
+              <span>
+                {isFullUsername
+                  ? userName
+                  : userName.length > 10
+                  ? `${userName.slice(0, 10)}...`
+                  : userName}
+              </span>
+              <span className="user-id font-bold">ID: {userId}</span>
+            </> */}
+ 
           {userName && userId ? (
+
             <>
               <span>
                 {isFullUsername
@@ -103,12 +112,6 @@ const UserProfile = memo(() => {
             </>
           ) : (
             <>
-              {/* <Image
-                src={loadingSvg}
-                alt="loading svg"
-                height={40}
-                width={40}
-              /> */}
               <span>Loading...</span>
             </>
           )}
