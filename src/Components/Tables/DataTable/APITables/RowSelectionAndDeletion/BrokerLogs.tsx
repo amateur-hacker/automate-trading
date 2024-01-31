@@ -455,7 +455,7 @@ const brokerColumns = [
 //   );
 // });
 
-const truncateText = (text, maxLength) => {
+const truncateText = (text:any, maxLength:any) => {
   if (text.length > maxLength) {
     return `${text.substring(0, maxLength)}...`;
   }
@@ -466,12 +466,7 @@ const BrokerLogs = async () => {
   const data = await apiCall();
 
   return (
-    <table
-      className="table table-striped table-dark"
-      border={1}
-      cellSpacing={5}
-      cellPadding={5}
-    >
+    <table className="table table-striped table-dark" border={1} cellSpacing={5} cellPadding={5}>
       <thead>
         <tr>
           {brokerColumns.map((column) => (
