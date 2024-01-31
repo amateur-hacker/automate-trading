@@ -1,6 +1,6 @@
 import { SidebarMenuInterFace } from "@/Type/Sidebar";
 import { HomeSvg } from "../../svgIcons";
-import { Settings, Link } from "react-feather";
+import { Settings, Link, Info, Activity } from "react-feather";
 
 export const SidebarMenu: SidebarMenuInterFace[] = [
   {
@@ -53,4 +53,16 @@ export const SidebarMenu: SidebarMenuInterFace[] = [
   //     },
   //   ],
   // },
+
+  {
+    menutitle: "Api Logs",
+    items: [
+      {
+        path: `/logs/webhook`,
+        icon: <Activity />,
+        title: "Api Logs",
+        type: "link",
+      },
+    ],
+  },
 ];

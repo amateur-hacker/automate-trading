@@ -26,8 +26,9 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
+import React from "react";
 
-const Sidebar = () => {
+const Sidebar = React.memo(() => {
   const [sidebarMargin, setSidebarMargin] = useState(0);
   const [apiType, setApiType] = useState("");
   const [apiName, setApiName] = useState("");
@@ -288,6 +289,6 @@ const Sidebar = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Sidebar;
