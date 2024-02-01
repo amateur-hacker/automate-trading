@@ -144,59 +144,59 @@ const WebHookLogs = () => {
 
   const webHookColumns = [
     {
-      id: "s_No",
-      name: "s_no",
+      id: "S.No",
+      name: "S.No",
       selector: (row: any) => row.s_No,
       grow: 0,
     },
     {
-      id: "Request_Id",
-      name: "request_id",
+      id: "RequestId",
+      name: "RequestId",
       selector: (row: any) => row.request_Id,
     },
     {
-      id: "Sub_Id",
-      name: "sub_id",
+      id: "SubId",
+      name: "SubId",
       selector: (row: any) => row.sub_Id,
     },
     {
       id: "Broker",
-      name: "broker",
+      name: "Broker",
       selector: (row: any) => row.broker_Name,
     },
+    // {
+    //   id: "Type",
+    //   name: "type",
+    //   selector: (row: any) => row.broker_Type,
+    // },
     {
-      id: "Type",
-      name: "type",
-      selector: (row: any) => row.broker_Type,
-    },
-    {
-      id: "Content",
-      name: "content",
+      id: "Syntax",
+      name: "Syntax",
       selector: (row: any) => row.content_Data,
     },
     {
-      id: "Error_Logs",
-      name: "error_logs",
+      id: "Error",
+      name: "Error",
       selector: (row: any) => row.error_Logs,
     },
     {
-      id: "Success_Logs",
-      name: "success_logs",
+      id: "Success",
+      name: "Success",
       selector: (row: any) => row.success_Logs,
     },
     {
-      id: "Info_Logs",
-      name: "info_logs",
+      id: "InfoLogs",
+      name: "InfoLogs",
       selector: (row: any) => row.info_Logs,
     },
     {
-      id: "Data_Intime",
-      name: "data_intime",
+      id: "DateIntime",
+      name: "DateIntime",
       selector: (row: any) => row.data_Intime,
     },
     {
-      id: "Data_Outtime",
-      name: "data_outtime",
+      id: "DateOuttime",
+      name: "DateOuttime",
       selector: (row: any) => row.data_Outtime,
     },
   ];
@@ -266,7 +266,7 @@ const WebHookLogs = () => {
 
   return (
     <>
-      <Time />
+      {/* <Time /> */}
       {/* {rowClicked && typeof window !== "undefined" && ( */}
       <Fragment>
         <CommonModal

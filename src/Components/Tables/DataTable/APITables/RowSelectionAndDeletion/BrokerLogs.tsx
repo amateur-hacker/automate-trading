@@ -56,74 +56,74 @@ const BrokerLogs = () => {
 
   const brokerColumns = [
     {
-      id: "s_no",
-      name: "s_no",
+      id: "S.No",
+      name: "S.No",
       selector: (row: any) => row.s_No,
       grow: 0,
     },
     {
-      id: "request_id",
-      name: "request_id",
-      selector: (row: any) => row.request_Id,
-    },
-    {
-      id: "api_id",
-      name: "api_id",
+      id: "ApiId",
+      name: "ApiId",
       selector: (row: any) => row.api_Id,
     },
     {
-      id: "sub_id",
-      name: "sub_id",
+      id: "RequestId",
+      name: "RequestId",
+      selector: (row: any) => row.request_Id,
+    },
+    {
+      id: "SubId",
+      name: "SubId",
       selector: (row: any) => row.sub_Id,
     },
     {
-      id: "broker",
-      name: "broker",
+      id: "Broker",
+      name: "Broker",
       selector: (row: any) => row.broker_Name,
     },
+    // {
+    //   id: "type",
+    //   name: "type",
+    //   selector: (row: any) => row.broker_Type,
+    // },
+    // {
+    //   id: "content_data",
+    //   name: "content_data",
+    //   selector: (row: any) => row.content_Data,
+    // },
     {
-      id: "type",
-      name: "type",
-      selector: (row: any) => row.broker_Type,
-    },
-    {
-      id: "content_data",
-      name: "content_data",
-      selector: (row: any) => row.content_Data,
-    },
-    {
-      id: "broker_data",
-      name: "broker_data",
+      id: "BrokerData",
+      name: "BrokerData",
       selector: (row: any) => row.broker_Data,
     },
     {
-      id: "request_name",
-      name: "request_name",
+      id: "RequestName",
+      name: "RequestName",
       selector: (row: any) => row.request_Name,
     },
     {
-      id: "error_logs",
-      name: "error_logs",
+      id: "ErrorLogs",
+      name: "ErrorLogs",
       selector: (row: any) => row.error_Logs,
     },
     {
-      id: "success_logs",
-      name: "success_logs",
+      id: "SuccessLogs",
+      name: "SuccessLogs",
       selector: (row: any) => row.success_Logs,
     },
     {
-      id: "info_logs",
-      name: "info_logs",
+      id: "InfoLogs",
+      name: "InfoLogs",
       selector: (row: any) => row.info_Logs,
     },
     {
-      id: "data_intime",
-      name: "data_intime",
+      id: "DataIntime",
+      name: "DataIntime",
       selector: (row: any) => row.data_Intime,
     },
     {
-      id: "data_outtime",
-      name: "data_outtime",
+      id: "DataOuttime",
+      name: "DataOuttime",
       selector: (row: any) => row.data_Outtime,
     },
   ];
@@ -188,22 +188,22 @@ const BrokerLogs = () => {
       const apiData = await response.json();
       const transformedData = apiData["$values"].map((item: any) => ({
         s_No: item.sNo !== null && item.sNo !== "" ? item.sNo : "null",
+        api_Id:
+          item.api_Id !== null && item.apiId !== "" ? item.apiId : "null",
         request_Id:
           item.request_Id !== null && item.request_Id !== ""
             ? item.request_Id
             : "null",
-        api_Id:
-          item.api_Id !== null && item.api_Id !== "" ? item.apiId : "null",
         sub_Id:
           item.sub_Id !== null && item.sub_Id !== "" ? item.sub_Id : "null",
         broker_Name:
           item.broker_Name !== null && item.broker_Name !== ""
             ? item.broker_Name
             : "null",
-        broker_Type:
-          item.broker_Type !== null && item.broker_Type !== ""
-            ? item.broker_Type
-            : "null",
+        // broker_Type:
+        //   item.broker_Type !== null && item.broker_Type !== ""
+        //     ? item.broker_Type
+        //     : "null",
         content_Data:
           item.content_Data !== null && item.content_Data !== ""
             ? item.content_Data

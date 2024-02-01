@@ -12,9 +12,9 @@ const getTime = async () => {
   return response.json();
 };
 
-const Time = React.memo(async () => {
+const Time = async () => {
   const time = await getTime();
   return <div>{time?.datetime}</div>;
-});
+};
 
 export default Time;
