@@ -59,6 +59,7 @@ const BrokerLogs = memo(() => {
       id: "s_no",
       name: "s_no",
       selector: (row: any) => row.s_No,
+      grow: 0,
     },
     {
       id: "request_id",
@@ -127,12 +128,34 @@ const BrokerLogs = memo(() => {
     },
   ];
 
+  const customStyles = {
+    cells: {
+      style: {
+        width: 0,
+      },
+    },
+  };
+
   useEffect(() => {
     // Add event listener to handle cell clicks
+    // const handleCellClick = (event: any) => {
+    //   const cellContent = event.target.textContent;
+    //   setSelectedCellData(cellContent);
+    //   setModalOpen(!isModalOpen);
+    // };
     const handleCellClick = (event: any) => {
       const cellContent = event.target.textContent;
-      setSelectedCellData(cellContent);
-      setModalOpen(!isModalOpen);
+
+      const isCheckboxCell = event.target.tagName.toLowerCase() === "input";
+      // const isParentTableCell =
+      event.target.parentElement.classList?.contains("rdt_TableCell");
+      const isChildInput =
+        event.target.firstElementChild?.tagName.toLowerCase() === "input";
+
+      if (!isCheckboxCell && !isChildInput) {
+        setSelectedCellData(cellContent);
+        setModalOpen(!isModalOpen);
+      }
     };
 
     // Attach event listener to cells with class 'rdt_TableCell'
@@ -296,6 +319,7 @@ const BrokerLogs = memo(() => {
               ScrollModalToggle();
               // handleGetColumnName(row);
             }}
+            customStyles={customStyles}
           />
         </div>
       </div>

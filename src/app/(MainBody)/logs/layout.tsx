@@ -50,7 +50,7 @@ const layout = memo(({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <CommonBreadcrumb parent="Data Table" pageTitle="API Logs" />
+      <CommonBreadcrumb parent="Table" pageTitle="WebHook Logs" />
       <Container fluid>
         <Row>
           <Col sm="12">

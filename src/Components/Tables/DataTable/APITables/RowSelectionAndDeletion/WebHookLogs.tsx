@@ -28,6 +28,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { memo } from "react";
 import { RootState } from "@/Redux/ReduxStore";
+import { Trash } from "react-feather";
 
 const WebHookLogs = memo(() => {
   const [data, setData] = useState<any[]>([]);
@@ -42,7 +43,9 @@ const WebHookLogs = memo(() => {
   const [selectedColumnName, setSelectedColumnName] = useState("");
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const webHookLogs = useSelector((state: RootState) => state.webHook?.webHookLogs);
+  const webHookLogs = useSelector(
+    (state: RootState) => state.webHook?.webHookLogs
+  );
 
   const [basicLineTab, setBasicLineTab] = useState("1");
   const [CopysuccessMessage, setCopysuccessMessage] = useState("");
@@ -51,15 +54,15 @@ const WebHookLogs = memo(() => {
     setSelectedRows(state.selectedRows);
   }, []);
 
-  const handleRowClick = (row: any) => {
-    const parsedContentData = JSON.parse(row.content_Data);
-    const rowWithParsedContentData = {
-      ...row,
-      content_Data: parsedContentData,
-    };
-    setSelectedRowData(rowWithParsedContentData);
-    setModalOpen(true);
-  };
+  // const handleRowClick = (row: any) => {
+  //   const parsedContentData = JSON.parse(row.content_Data);
+  //   const rowWithParsedContentData = {
+  //     ...row,
+  //     content_Data: parsedContentData,
+  //   };
+  //   setSelectedRowData(rowWithParsedContentData);
+  //   setModalOpen(true);
+  // };
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(selectedCellData || "");
@@ -91,8 +94,17 @@ const WebHookLogs = memo(() => {
     // Add event listener to handle cell clicks
     const handleCellClick = (event: any) => {
       const cellContent = event.target.textContent;
-      setSelectedCellData(cellContent);
-      setModalOpen(!isModalOpen);
+
+      const isCheckboxCell = event.target.tagName.toLowerCase() === "input";
+      // const isParentTableCell =
+      event.target.parentElement.classList?.contains("rdt_TableCell");
+      const isChildInput =
+        event.target.firstElementChild?.tagName.toLowerCase() === "input";
+
+      if (!isCheckboxCell && !isChildInput) {
+        setSelectedCellData(cellContent);
+        setModalOpen(!isModalOpen);
+      }
     };
 
     // Attach event listener to cells with class 'rdt_TableCell'
@@ -107,13 +119,33 @@ const WebHookLogs = memo(() => {
         cell.removeEventListener("click", handleCellClick);
       });
     };
-  }, [data]); // Ensure the effect runs when data changes
+  }, [webHookLogs]); // Ensure the effect runs when data changes
+
+  const customStyles = {
+    rows: {
+      style: {
+        // minHeight: "72px", // override the row height
+      },
+    },
+    // headCells: {
+    //   style: {
+    //     paddingLeft: "4px", // override the cell padding for head cells
+    //     paddingRight: "4px",
+    //   },
+    // },
+    cells: {
+      style: {
+        width: 0,
+      },
+    },
+  };
 
   const webHookColumns = [
     {
       id: "s_No",
       name: "s_no",
       selector: (row: any) => row.s_No,
+      grow: 0,
     },
     {
       id: "Request_Id",
@@ -255,10 +287,12 @@ const WebHookLogs = memo(() => {
       <div className="table-responsive">
         {selectedRows.length !== 0 && (
           <>
-            <h4 className="text-muted  m-0">Delete Selected Data</h4>
-            <Button color="secondary" onClick={handleDelete} className="mb-3">
-              Delete Row
-            </Button>
+            <h4 className="text-muted mb-2">Delete Selected Data</h4>
+            <div>
+              <Button color="secondary" onClick={handleDelete} className="mb-3">
+                Delete Row
+              </Button>
+            </div>
           </>
         )}
 
@@ -271,11 +305,12 @@ const WebHookLogs = memo(() => {
             selectableRows
             onSelectedRowsChange={handleRowSelected}
             clearSelectedRows={toggleCleared}
+            customStyles={customStyles}
             // onRowClicked={(row): any => {
             //   handleGetColumnName(row);
             // }}
             onRowClicked={(row) => {
-              handleRowClick(row);
+              // handleRowClick(row);
               ScrollModalToggle();
               // handleGetColumnName(row);
             }}

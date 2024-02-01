@@ -55,12 +55,12 @@ export const SidebarMenu: SidebarMenuInterFace[] = [
   // },
 
   {
-    menutitle: "Api Logs",
+    menutitle: "WebHook Logs",
     items: [
       {
         path: `/logs/webhook`,
         icon: <Activity />,
-        title: "Api Logs",
+        title: "WebHook Logs",
         type: "link",
       },
     ],

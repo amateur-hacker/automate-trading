@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import Cookies from "js-cookie";
+import { usePathname } from "next/navigation";
 // import "@/app/globals.css"
 
 // Define the layout component
@@ -23,7 +24,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     // Function to handle window resize
     const handleResize = () => {
-      setLoading(true);
       if (window.innerWidth < 992) {
         document
           .getElementById("page-wrapper")
@@ -58,10 +58,62 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     };
   }, [sidebarWrapper]);
 
+  const pathName = usePathname();
+  const pagesUrl = [
+    {
+      url: "/logs/webhook",
+      api: "https://nextlevelpine.com/get-webhook-logs",
+    },
+    {
+      url: "/logs/broker",
+      api: "https://nextlevelpine.com/get-webhook-logs",
+    },
+  ];
+  const getApiResponse = async (url: any) => {
+    try {
+      const authToken = Cookies?.get("authtoken");
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: authToken ?? "",
+        },
+        cache: "force-cache",
+      });
+
+      if (response.status === 200) {
+        setLoading(false);
+      } else {
+        setLoading(true);
+      }
+    } catch (error) {
+      console.error("Error fetching API:", error);
+      setLoading(true);
+    }
+  };
+
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    // setLoading(true);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 2000);
+
+    // Check if the current pathName matches any of the defined URLs
+    const matchedPage = pagesUrl.find((page) => page.url === pathName);
+
+    // If a matching page is found, call the respective API
+    if (matchedPage) {
+      getApiResponse(matchedPage.api);
+    } else {
+      // console.error(
+      //   "No matching page found for the current pathName:",
+      //   pathName
+      // );
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+    }
   }, []);
 
   // ... (previous code)
@@ -77,8 +129,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             width: "100%",
             height: "100%",
             zIndex: 9999,
-            background: "lightgray",
-            opacity: 0.8, // Adjust opacity as needed
+            background: "rgba(211, 211, 211, 0.2)", // Use rgba with alpha channel
           }}
         >
           <div
@@ -89,6 +140,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               left: 0,
               width: "0%",
               background: "linear-gradient(to right, red, yellow, green)",
+              // background: "linear-gradient(to right,  #7070f0, white, yellow)",
               animation: "progressAnimation 6s ease-in-out",
             }}
           ></div>
