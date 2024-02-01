@@ -31,7 +31,7 @@ import { RootState } from "@/Redux/ReduxStore";
 import { Trash } from "react-feather";
 import Time from "./Time";
 
-const WebHookLogs = memo(() => {
+const WebHookLogs = () => {
   const [data, setData] = useState<any[]>([]);
   const [selectedRows, setSelectedRows] = useState<any[]>([]);
   const [toggleCleared, setToggleCleared] = useState(false);
@@ -212,6 +212,9 @@ const WebHookLogs = memo(() => {
             Authorization: authToken ?? "",
           },
           cache: "force-cache",
+          next: {
+            revalidate: 0
+          }
         }
       );
       const apiData = await response.json();
@@ -320,7 +323,7 @@ const WebHookLogs = memo(() => {
       </div>
     </>
   );
-});
+};
 
 export default WebHookLogs;
 
@@ -364,50 +367,64 @@ export default WebHookLogs;
 //   );
 // }
 
-// import Cookies from "js-cookie";
-// import NodeCache from "node-cache";
+// // import Cookies from "js-cookie";
+// // import NodeCache from "node-cache";
 
-// const getRandomNumber = async () => {
-//   // const response = await fetch("https://api.github.com/repos/vercel/next.js")
-//   // const data = await response.json()
+// // const getRandomNumber = async () => {
+// //   // const response = await fetch("https://api.github.com/repos/vercel/next.js")
+// //   // const data = await response.json()
 
-//   const myCache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
-//   const authToken = Cookies.get("authtoken");
-//   const response = await fetch("https://nextlevelpine.com/get-webhook-logs", {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: authToken ?? "",
-//     },
-//     cache: "no-store",
-//     // next: {
-//     //   revalidate: 1,
-//     // },
-//   });
-//   const data = await response.json();
-//   const setcachedData = myCache.set("myKey", data, 10000);
-//   const getCachedData = myCache.get("myKey");
-//   console.log("get cched data", getCachedData);
-//   return getCachedData;
-// };
+// //   const myCache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
+// //   const authToken = Cookies.get("authtoken");
+// //   const response = await fetch("https://nextlevelpine.com/get-webhook-logs", {
+// //     method: "GET",
+// //     headers: {
+// //       "Content-Type": "application/json",
+// //       Authorization: authToken ?? "",
+// //     },
+// //     cache: "no-store",
+// //     // next: {
+// //     //   revalidate: 1,
+// //     // },
+// //   });
+// //   const data = await response.json();
+// //   const setcachedData = myCache.set("myKey", data, 10000);
+// //   const getCachedData = myCache.get("myKey");
+// //   console.log("get cched data", getCachedData);
+// //   return getCachedData;
+// // };
 
-// export default async function SSR() {
-//   const data = await getRandomNumber();
-//   console.log(data);
+// // export default async function SSR() {
+// //   const data = await getRandomNumber();
+// //   console.log(data);
 
+// //   return (
+// //     <main>
+// //       {Object.entries(data["$values"]).map(([key, value]) => (
+// //         <div key={key}>
+// //           <strong>{key}:</strong>
+// //           {typeof value === "object" && (
+// //             <pre>{JSON.stringify(value, null, 2)}</pre>
+// //             // ) : (
+// //             //   <span>{value}</span>
+// //             // )}
+// //           )}
+// //         </div>
+// //       ))}
+// //     </main>
+// //   );
+// // }
+
+// import App from "./ExampleTable"
+
+// import React from 'react'
+
+// const WebHookLogs = () => {
 //   return (
-//     <main>
-//       {Object.entries(data["$values"]).map(([key, value]) => (
-//         <div key={key}>
-//           <strong>{key}:</strong>
-//           {typeof value === "object" && (
-//             <pre>{JSON.stringify(value, null, 2)}</pre>
-//             // ) : (
-//             //   <span>{value}</span>
-//             // )}
-//           )}
-//         </div>
-//       ))}
-//     </main>
-//   );
+//     <div>
+//       <App />
+//     </div>
+//   )
 // }
+
+// export default WebHookLogs

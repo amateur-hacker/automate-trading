@@ -13,7 +13,7 @@ import React, { memo, useCallback, useEffect, useState } from "react";
 import { decryptData } from "@/Config/decryptData";
 import loadingSvg from "../../../../../public/assets/images/loading.svg";
 
-const UserProfile = memo(() => {
+const UserProfile = () => {
   const { i18LangStatus } = useAppSelector((store) => store.langSlice);
   const [userId, setUserId] = useState("");
   const [userName, setUsername] = useState("");
@@ -135,6 +135,6 @@ const UserProfile = memo(() => {
       </ul>
     </li>
   );
-});
+};
 
 export default UserProfile;

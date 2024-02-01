@@ -27,7 +27,7 @@ import { usePathname } from "next/navigation";
 import { Layers, Zap } from "react-feather";
 import { memo } from "react";
 
-const layout = memo(({ children }: { children: React.ReactNode }) => {
+const layout =({ children }: { children: React.ReactNode }) => {
   const [basicLineTab, setBasicLineTab] = useState("1");
   const router = useRouter();
   const pathName = usePathname();
@@ -82,6 +82,6 @@ const layout = memo(({ children }: { children: React.ReactNode }) => {
       </Container>
     </>
   );
-});
+};
 
 export default layout;

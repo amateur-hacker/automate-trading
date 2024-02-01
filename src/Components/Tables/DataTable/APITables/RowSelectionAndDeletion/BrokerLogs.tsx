@@ -16,7 +16,7 @@ import { Nav } from "reactstrap";
 import CommonTabNav from "./CommonTabNav";
 import { memo } from "react";
 
-const BrokerLogs = memo(() => {
+const BrokerLogs = () => {
   const [data, setData] = useState<any[]>([]);
   const [selectedRows, setSelectedRows] = useState<any[]>([]);
   const [toggleCleared, setToggleCleared] = useState(false);
@@ -325,6 +325,6 @@ const BrokerLogs = memo(() => {
       </div>
     </>
   );
-});
+};
 
 export default BrokerLogs;
