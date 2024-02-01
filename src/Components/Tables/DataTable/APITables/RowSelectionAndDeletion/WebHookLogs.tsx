@@ -29,6 +29,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { memo } from "react";
 import { RootState } from "@/Redux/ReduxStore";
 import { Trash } from "react-feather";
+import Time from "./Time";
 
 const WebHookLogs = memo(() => {
   const [data, setData] = useState<any[]>([]);
