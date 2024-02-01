@@ -276,7 +276,7 @@ const WebHookLogs = () => {
           }}
         >
           <div className="d-flex justify-content-center align-items-center flex-column">
-            <pre style={{whiteSpace: "pre-wrap", overflowWrap: "anywhere"}} className="p-3 w-100 overflow-wrap">{selectedCellData}</pre>
+            <pre style={{whiteSpace: "pre-wrap", overflowWrap: "anywhere"}} className="p-3 w-100 overflow-wrap text-center">{selectedCellData}</pre>
             <Button
               className="signup-btn"
               color="primary"
