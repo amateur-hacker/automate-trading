@@ -36,7 +36,7 @@ const layout =({ children }: { children: React.ReactNode }) => {
     {
       id: "1",
       icon: <i className="icofont icofont-ui-home"></i>,
-      text: "WebHook Logs",
+      text: "Webhook Logs",
       url: "/logs/webhook",
     },
     {
@@ -50,7 +50,7 @@ const layout =({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <CommonBreadcrumb parent="Table" pageTitle="WebHook Logs" />
+      <CommonBreadcrumb parent="Table" pageTitle="Webhook Logs" />
       <Container fluid>
         <Row>
           <Col sm="12">
