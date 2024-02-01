@@ -127,6 +127,83 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
+      {loading && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999,
+            // background: "rgba(0, 0, 0)", // Use rgba with alpha channel
+            background: "rgb(38, 41, 50, 0.8)",
+            backdropFilter: "blur(10px)"
+          }}
+        >
+          {/* <div
+            style={{
+              height: "3px",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "0%",
+              background: "linear-gradient(to right, red, yellow, green)",
+              // background: "linear-gradient(to right,  #7070f0, white, yellow)",
+              animation: "progressAnimation 6s ease-in-out",
+            }}
+          ></div> */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {/* <Image
+              src="/assets/images/loader2.svg"
+              width={100}
+              height={100}
+              alt="loader2 svg"
+              priority
+            />
+            <Image
+              src="/assets/images/loader1.svg"
+              width={100}
+              height={100}
+              alt="loader1 svg"
+              priority
+              style={{ marginRight: "-40px" }}
+            /> */}
+            <div className="container">
+              <div className="dot dot-1"></div>
+              <div className="dot dot-2"></div>
+              <div className="dot dot-3"></div>
+            </div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+              <defs>
+                <filter id="goo">
+                  <feGaussianBlur
+                    in="SourceGraphic"
+                    stdDeviation="10"
+                    result="blur"
+                  />
+                  <feColorMatrix
+                    in="blur"
+                    mode="matrix"
+                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"
+                  />
+                </filter>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      )}
       {/* The main content */}
 
       <div className={`page-wrapper ${sidebarWrapper}`} id="page-wrapper">
