@@ -183,7 +183,6 @@ const BrokerLogs = () => {
             "Content-Type": "application/json",
             Authorization: authToken ?? "",
           },
-          cache: "force-cache",
         }
       );
       const apiData = await response.json();
@@ -280,15 +279,24 @@ const BrokerLogs = () => {
             setModalOpen(!isModalOpen);
           }}
         >
-          <pre className="p-3">{selectedCellData}</pre>
-          <Button
-            className="signup-btn me-2"
-            color="primary"
-            onClick={handleCopyClick}
-          >
-            Copy
-          </Button>
-          <span>{CopysuccessMessage}</span>
+          <div className="d-flex justify-content-center align-items-center flex-column">
+            <pre
+              style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}
+              className="p-3 w-100 overflow-wrap text-center"
+            >
+              {selectedCellData}
+            </pre>
+            <Button
+              className="signup-btn"
+              color="primary"
+              onClick={handleCopyClick}
+            >
+              Copy
+            </Button>
+            <span className={CopysuccessMessage && "mt-2"}>
+              {CopysuccessMessage}
+            </span>
+          </div>
         </CommonModal>
       </Fragment>
 

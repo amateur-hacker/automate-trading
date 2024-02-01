@@ -43,6 +43,7 @@ const WebHookLogs = () => {
   const [selectedCellData, setSelectedCellData] = useState();
   const [selectedColumnName, setSelectedColumnName] = useState("");
   const [isModalOpen, setModalOpen] = useState(false);
+  const [initialRender, setInitialRender] = useState(true);
   const dispatch = useDispatch();
   const webHookLogs = useSelector(
     (state: RootState) => state.webHook?.webHookLogs
@@ -211,10 +212,9 @@ const WebHookLogs = () => {
             "Content-Type": "application/json",
             Authorization: authToken ?? "",
           },
-          cache: "force-cache",
-          next: {
-            revalidate: 0,
-          },
+          // next: {
+          //   revalidate: 0,
+          // },
         }
       );
       const apiData = await response.json();
@@ -266,6 +266,7 @@ const WebHookLogs = () => {
 
   return (
     <>
+      <Time />
       {/* {rowClicked && typeof window !== "undefined" && ( */}
       <Fragment>
         <CommonModal
@@ -276,7 +277,12 @@ const WebHookLogs = () => {
           }}
         >
           <div className="d-flex justify-content-center align-items-center flex-column">
-            <pre style={{whiteSpace: "pre-wrap", overflowWrap: "anywhere"}} className="p-3 w-100 overflow-wrap text-center">{selectedCellData}</pre>
+            <pre
+              style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}
+              className="p-3 w-100 overflow-wrap text-center"
+            >
+              {selectedCellData}
+            </pre>
             <Button
               className="signup-btn"
               color="primary"
@@ -284,7 +290,9 @@ const WebHookLogs = () => {
             >
               Copy
             </Button>
-            <span className={CopysuccessMessage && "mt-2"}>{CopysuccessMessage}</span>
+            <span className={CopysuccessMessage && "mt-2"}>
+              {CopysuccessMessage}
+            </span>
           </div>
         </CommonModal>
       </Fragment>
