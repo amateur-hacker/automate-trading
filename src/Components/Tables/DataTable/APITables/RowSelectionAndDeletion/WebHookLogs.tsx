@@ -145,23 +145,23 @@ const WebHookLogs = () => {
   const webHookColumns = [
     {
       id: "S.No",
-      name: "S.No",
+      name: "S.NO",
       selector: (row: any) => row.s_No,
       grow: 0,
     },
     {
       id: "RequestId",
-      name: "RequestId",
+      name: "REQUESTID",
       selector: (row: any) => row.request_Id,
     },
     {
       id: "SubId",
-      name: "SubId",
+      name: "SUBID",
       selector: (row: any) => row.sub_Id,
     },
     {
       id: "Broker",
-      name: "Broker",
+      name: "BROKER",
       selector: (row: any) => row.broker_Name,
     },
     // {
@@ -171,32 +171,32 @@ const WebHookLogs = () => {
     // },
     {
       id: "Syntax",
-      name: "Syntax",
+      name: "SYNTAX",
       selector: (row: any) => row.content_Data,
     },
     {
       id: "Error",
-      name: "Error",
+      name: "ERROR",
       selector: (row: any) => row.error_Logs,
     },
     {
       id: "Success",
-      name: "Success",
+      name: "SUCCESS",
       selector: (row: any) => row.success_Logs,
     },
     {
-      id: "InfoLogs",
-      name: "InfoLogs",
+      id: "Info",
+      name: "INFO",
       selector: (row: any) => row.info_Logs,
     },
     {
       id: "DateIntime",
-      name: "DateIntime",
+      name: "DATEINTIME",
       selector: (row: any) => row.data_Intime,
     },
     {
       id: "DateOuttime",
-      name: "DateOuttime",
+      name: "DATEOUTTIME",
       selector: (row: any) => row.data_Outtime,
     },
   ];

@@ -57,28 +57,28 @@ const BrokerLogs = () => {
   const brokerColumns = [
     {
       id: "S.No",
-      name: "S.No",
+      name: "S.NO",
       selector: (row: any) => row.s_No,
       grow: 0,
     },
     {
       id: "ApiId",
-      name: "ApiId",
+      name: "APIID",
       selector: (row: any) => row.api_Id,
     },
     {
       id: "RequestId",
-      name: "RequestId",
+      name: "REQUESTID",
       selector: (row: any) => row.request_Id,
     },
     {
       id: "SubId",
-      name: "SubId",
+      name: "SUBID",
       selector: (row: any) => row.sub_Id,
     },
     {
       id: "Broker",
-      name: "Broker",
+      name: "BROKER",
       selector: (row: any) => row.broker_Name,
     },
     // {
@@ -93,37 +93,37 @@ const BrokerLogs = () => {
     // },
     {
       id: "BrokerData",
-      name: "BrokerData",
+      name: "BROKERDATA",
       selector: (row: any) => row.broker_Data,
     },
     {
       id: "RequestName",
-      name: "RequestName",
+      name: "REQUESTNAME",
       selector: (row: any) => row.request_Name,
     },
     {
       id: "ErrorLogs",
-      name: "ErrorLogs",
+      name: "ERROR",
       selector: (row: any) => row.error_Logs,
     },
     {
-      id: "SuccessLogs",
-      name: "SuccessLogs",
+      id: "Success",
+      name: "Success",
       selector: (row: any) => row.success_Logs,
     },
     {
       id: "InfoLogs",
-      name: "InfoLogs",
+      name: "INFO",
       selector: (row: any) => row.info_Logs,
     },
     {
       id: "DataIntime",
-      name: "DataIntime",
+      name: "DATAINTIME",
       selector: (row: any) => row.data_Intime,
     },
     {
       id: "DataOuttime",
-      name: "DataOuttime",
+      name: "DATAOUTTIME",
       selector: (row: any) => row.data_Outtime,
     },
   ];
