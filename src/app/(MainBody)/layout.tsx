@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 import { usePathname } from "next/navigation";
 import { Center } from "@/Data/Maps";
 import Image from "next/image";
-import "./loader.css"
+import "./loader.css";
 // import "@/app/globals.css"
 
 // Define the layout component
@@ -22,7 +22,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   );
 
   // State to manage the loading status
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Function to handle window resize
@@ -99,29 +99,29 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  useEffect(() => {
-    // setLoading(true);
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 2000);
+  // useEffect(() => {
+  //   // setLoading(true);
+  //   // setTimeout(() => {
+  //   //   setLoading(false);
+  //   // }, 2000);
 
-    // Check if the current pathName matches any of the defined URLs
-    const matchedPage = pagesUrl.find((page) => page.url === pathName);
+  //   // Check if the current pathName matches any of the defined URLs
+  //   const matchedPage = pagesUrl.find((page) => page.url === pathName);
 
-    // If a matching page is found, call the respective API
-    if (matchedPage) {
-      getApiResponse(matchedPage.api);
-    } else {
-      // console.error(
-      //   "No matching page found for the current pathName:",
-      //   pathName
-      // );
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 500);
-    }
-  }, []);
+  //   // If a matching page is found, call the respective API
+  //   if (matchedPage) {
+  //     getApiResponse(matchedPage.api);
+  //   } else {
+  //     // console.error(
+  //     //   "No matching page found for the current pathName:",
+  //     //   pathName
+  //     // );
+  //     setLoading(true);
+  //     setTimeout(() => {
+  //       setLoading(false);
+  //     }, 500);
+  //   }
+  // }, []);
 
   // ... (previous code)
 
@@ -141,7 +141,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             zIndex: 9999,
             // background: "rgba(0, 0, 0)", // Use rgba with alpha channel
             background: "rgb(38, 41, 50, 0.8)",
-            backdropFilter: "blur(10px)"
+            backdropFilter: "blur(10px)",
           }}
         >
           {/* <div

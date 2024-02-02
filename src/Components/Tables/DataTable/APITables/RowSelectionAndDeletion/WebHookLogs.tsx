@@ -144,23 +144,23 @@ const WebHookLogs = () => {
 
   const webHookColumns = [
     {
-      id: "S.No",
+      id: "S.NO",
       name: "S.NO",
       selector: (row: any) => row.s_No,
       grow: 0,
     },
     {
-      id: "RequestId",
+      id: "REQUESTID",
       name: "REQUESTID",
       selector: (row: any) => row.request_Id,
     },
     {
-      id: "SubId",
+      id: "SUBID",
       name: "SUBID",
       selector: (row: any) => row.sub_Id,
     },
     {
-      id: "Broker",
+      id: "BROKER",
       name: "BROKER",
       selector: (row: any) => row.broker_Name,
     },
@@ -170,32 +170,32 @@ const WebHookLogs = () => {
     //   selector: (row: any) => row.broker_Type,
     // },
     {
-      id: "Syntax",
+      id: "SYNTAX",
       name: "SYNTAX",
       selector: (row: any) => row.content_Data,
     },
     {
-      id: "Error",
+      id: "ERROR",
       name: "ERROR",
       selector: (row: any) => row.error_Logs,
     },
     {
-      id: "Success",
+      id: "SUCCESS",
       name: "SUCCESS",
       selector: (row: any) => row.success_Logs,
     },
     {
-      id: "Info",
+      id: "INFO",
       name: "INFO",
       selector: (row: any) => row.info_Logs,
     },
     {
-      id: "DateIntime",
+      id: "DATEINTIME",
       name: "DATEINTIME",
       selector: (row: any) => row.data_Intime,
     },
     {
-      id: "DateOuttime",
+      id: "DATEOUTTIME",
       name: "DATEOUTTIME",
       selector: (row: any) => row.data_Outtime,
     },
@@ -232,7 +232,9 @@ const WebHookLogs = () => {
         data_Outtime: item.data_Outtime !== null ? item.data_Outtime : "null",
       }));
       // setData(transformedData);
+
       dispatch(setWebHookLogs(transformedData));
+      console.log(apiData)
     } catch (error) {
       console.log(
         `Error coming from handleGetWebHookLogs function: ${error.message}`
