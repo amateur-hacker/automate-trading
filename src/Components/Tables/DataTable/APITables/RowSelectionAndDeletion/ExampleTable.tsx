@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
 const ExampleTable =  () => {
-  const [time, setTime] = useState(null);
+  const [time, setTime] = useState("");
   const [data, setData] = useState([]);
 
   const getTime = async () => {
@@ -71,7 +71,7 @@ const ExampleTable =  () => {
   return (
     <div>
       <h1>Hello It's the current time</h1>
-      <h2 className="bg-black">{time?.datetime}</h2>
+      {/* <h2 className="bg-black">{time?.datetime}</h2> */}
       <h1>And It's the current webhook table data</h1>
       {/* <pre
         style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}
