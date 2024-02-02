@@ -40,6 +40,8 @@
     "js-cookie": "^3.0.5",
     "leaflet": "^1.9.4",
     "less-loader": "^12.2.0",
+    "moment": "^2.30.1",
+    "mysql2": "^3.9.1",
     "next": "^13.4.9",
     "next-i18next": "^14.0.3",
     "node-cache": "^5.1.2",
@@ -75,7 +77,6 @@
     "react-masonry-css": "^1.0.16",
     "react-perfect-scrollbar": "^1.5.8",
     "react-photoswipe-gallery": "^2.2.7",
-    "react-query": "^3.39.3",
     "react-range": "^1.8.14",
     "react-rating": "^2.0.5",
     "react-ratings-declarative": "^3.4.1",
@@ -96,7 +97,8 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.0.7",
     "sweetalert2": "^11.7.20",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/feather-icons": "^4.29.1",
