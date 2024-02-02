@@ -8,7 +8,7 @@ const ExampleTable =  () => {
 
   const getTime = async () => {
     const response = await fetch(
-      "http://worldtimeapi.org/api/timezone/Asia/Kolkata",
+      "https://worldtimeapi.org/api/timezone/Asia/Kolkata",
       {
         next: {
           revalidate: 0,
