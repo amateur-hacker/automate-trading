@@ -11,17 +11,17 @@ export function middleware(request: NextRequest) {
 
   console.log(path, "path");
 
-  if (!publicPath && !cookies) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  // if (!publicPath && !cookies) {
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
 
   // if (publicPath && !cookies) {
   //   return NextResponse.redirect(new URL(`/${pathSplitName}`, request.url));
   // }
 
-  if (publicPath && cookies) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
-  }
+  // if (publicPath && cookies) {
+  //   return NextResponse.redirect(new URL("/dashboard", request.url));
+  // }
 }
 
 export const config = {
