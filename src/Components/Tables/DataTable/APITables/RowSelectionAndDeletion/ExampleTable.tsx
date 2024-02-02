@@ -2,20 +2,18 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
-const ExampleTable =  () => {
-  const [time, setTime] = useState("");
+const ExampleTable = async () => {
+  const [time, setTime] = useState<{ datetime: string } | undefined>();
+
   const [data, setData] = useState([]);
 
   const getTime = async () => {
     const response = await fetch(
-      "https://worldtimeapi.org/api/timezone/Asia/Kolkata",
-      {
-        next: {
-          revalidate: 0,
-        },
-      }
+      "https://worldtimeapi.org/api/timezone/Asia/Kolkata"
     );
-    return response.json();
+    const data = await response.json();
+    setTime(data);
+    // return response.json();
   };
 
   const handleGetWebHookLogs = async () => {
@@ -49,7 +47,7 @@ const ExampleTable =  () => {
         data_Outtime: item.data_Outtime !== null ? item.data_Outtime : "null",
       }));
 
-      return transformedData;
+      setData(transformedData);
     } catch (error) {
       console.log(
         `Error coming from handleGetWebHookLogs function: ${error.message}`
@@ -58,14 +56,8 @@ const ExampleTable =  () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const fetchedTime = await getTime();
-      const fetchedData = await handleGetWebHookLogs();
-      setTime(fetchedTime);
-      setData(fetchedData ?? []);
-    };
-
-    fetchData();
+    handleGetWebHookLogs();
+    getTime();
   }, []);
 
   return (
