@@ -20,9 +20,9 @@ const handleGetWebHookLogs = async () => {
         "Content-Type": "application/json",
         Authorization: authToken,
       },
-      // next: {
-      //   revalidate: 0,
-      // },
+      next: {
+        revalidate: 0,
+      },
     });
     const apiData = await response.json();
     const transformedData = apiData["$values"].map((item: any) => ({
