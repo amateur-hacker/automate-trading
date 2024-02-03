@@ -269,7 +269,7 @@ const ExampleTable = () => {
 
   const modifiedColumns = webHookColumns.map((column) => ({
     ...column,
-    cell: (row) => (
+    cell: (row: any) => (
       <React.Fragment>
         {isFetching ? (
           <div className="d-flex w-100">
