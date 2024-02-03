@@ -2,64 +2,14 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import DataTable from "react-data-table-component";
-const webHookColumns = [
-  {
-    id: "S.NO",
-    name: "S.NO",
-    selector: (row: any) => row.s_No,
-    grow: 0,
-  },
-  {
-    id: "REQUESTID",
-    name: "REQUESTID",
-    selector: (row: any) => row.request_Id,
-  },
-  {
-    id: "SUBID",
-    name: "SUBID",
-    selector: (row: any) => row.sub_Id,
-  },
-  {
-    id: "BROKER",
-    name: "BROKER",
-    selector: (row: any) => row.broker_Name,
-  },
-  // {
-  //   id: "Type",
-  //   name: "type",
-  //   selector: (row: any) => row.broker_Type,
-  // },
-  {
-    id: "SYNTAX",
-    name: "SYNTAX",
-    selector: (row: any) => row.content_Data,
-  },
-  {
-    id: "ERROR",
-    name: "ERROR",
-    selector: (row: any) => row.error_Logs,
-  },
-  {
-    id: "SUCCESS",
-    name: "SUCCESS",
-    selector: (row: any) => row.success_Logs,
-  },
-  {
-    id: "INFO",
-    name: "INFO",
-    selector: (row: any) => row.info_Logs,
-  },
-  {
-    id: "DATEINTIME",
-    name: "DATEINTIME",
-    selector: (row: any) => row.data_Intime,
-  },
-  {
-    id: "DATEOUTTIME",
-    name: "DATEOUTTIME",
-    selector: (row: any) => row.data_Outtime,
-  },
-];
+
+const SelectTheme = () => {
+  return (
+    <SkeletonTheme baseColor="#474E68" highlightColor="#C7C8CC">
+      <Skeleton width={90} height={30} />
+    </SkeletonTheme>
+  );
+};
 
 // import { useEffect, useState } from "react";
 // import Cookies from "js-cookie";
@@ -178,6 +128,25 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
+const customStyles = {
+  rows: {
+    style: {
+      // minHeight: "72px", // override the row height
+    },
+  },
+  // headCells: {
+  //   style: {
+  //     paddingLeft: "4px", // override the cell padding for head cells
+  //     paddingRight: "4px",
+  //   },
+  // },
+  cells: {
+    style: {
+      width: 0,
+    },
+  },
+};
+
 const ExampleTable = () => {
   // Access the client
   const queryClient = useQueryClient();
@@ -188,7 +157,8 @@ const ExampleTable = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNCIsImVtYWlsIjoic2FjaGluMTIzNEBnbWFpbC5jb20iLCJ1aWQiOiJyUDhsbW1NRDZ2YjZDbWJVbnY2OGZlOTRLc20yIiwicGhvbmUiOiIxMjM0NTY3ODkwIiwiVXNlcm5hbWUiOiJzYWNoaW4xMjM0IiwiaWQiOiIyNCIsIm5iZiI6MTcwNjkxMTM0NSwiZXhwIjoxNzA2OTk3NzQ1LCJpYXQiOjE3MDY5MTEzNDV9.xp-vSXsDsmHXUP92QIARnBMZcfLS8YdgH1Xw3gBu2hI",
+        Authorization:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNCIsImVtYWlsIjoic2FjaGluMTIzNEBnbWFpbC5jb20iLCJ1aWQiOiJyUDhsbW1NRDZ2YjZDbWJVbnY2OGZlOTRLc20yIiwicGhvbmUiOiIxMjM0NTY3ODkwIiwiVXNlcm5hbWUiOiJzYWNoaW4xMjM0IiwiaWQiOiIyNCIsIm5iZiI6MTcwNjkxMTM0NSwiZXhwIjoxNzA2OTk3NzQ1LCJpYXQiOjE3MDY5MTEzNDV9.xp-vSXsDsmHXUP92QIARnBMZcfLS8YdgH1Xw3gBu2hI",
       },
     });
     const data = await response.json();
@@ -216,6 +186,67 @@ const ExampleTable = () => {
     refetchInterval: 3000,
   });
 
+  const webHookColumns = [
+    {
+      id: "S.NO",
+      name: "S.NO",
+      selector: (row: any) => row.s_No,
+      grow: 0,
+    },
+    {
+      id: "REQUESTID",
+      name: "REQUESTID",
+      selector: (row: any) => row.request_Id,
+      // cell: (row) =>
+      //   isLoading ? <Skeleton width={90} height={20} /> : row.request_Id,
+    },
+    {
+      id: "SUBID",
+      name: "SUBID",
+      selector: (row: any) => row.sub_Id,
+    },
+    {
+      id: "BROKER",
+      name: "BROKER",
+      selector: (row: any) => row.broker_Name,
+    },
+    // {
+    //   id: "Type",
+    //   name: "type",
+    //   selector: (row: any) => row.broker_Type,
+    // },
+    {
+      id: "SYNTAX",
+      name: "SYNTAX",
+      selector: (row: any) => row.content_Data,
+    },
+    {
+      id: "ERROR",
+      name: "ERROR",
+      selector: (row: any) => row.error_Logs,
+    },
+    {
+      id: "SUCCESS",
+      name: "SUCCESS",
+      selector: (row: any) => row.success_Logs,
+    },
+    {
+      id: "INFO",
+      name: "INFO",
+      selector: (row: any) => row.info_Logs,
+    },
+    {
+      id: "DATEINTIME",
+      name: "DATEINTIME",
+      selector: (row: any) => row.data_Intime,
+    },
+    {
+      id: "DATEOUTTIME",
+      name: "DATEOUTTIME",
+      selector: (row: any) => row.data_Outtime,
+    },
+  ];
+
   // Mutations
   // const mutation = useMutation({
   //   mutationFn: postTodo,
@@ -225,58 +256,57 @@ const ExampleTable = () => {
   //   },
   // });
 
-  if (isLoading)
-    return (
-      <div style={{ marginTop: "6rem" }}>
-        <SkeletonTheme baseColor="#474E68" highlightColor="#C7C8CC">
-          <Skeleton count={5} height={40} />
-        </SkeletonTheme>
-      </div>
-    );
+  // if (isLoading)
+  //   return (
+  //     <div style={{ marginTop: "6rem" }}>
+  //       <SkeletonTheme baseColor="#474E68" highlightColor="#C7C8CC">
+  //         <Skeleton count={5} height={40} />
+  //       </SkeletonTheme>
+  //     </div>
+  //   );
 
   console.log(data);
 
+  const modifiedColumns = webHookColumns.map((column) => ({
+    ...column,
+    cell: (row) => (
+      <React.Fragment>
+        {isFetching ? (
+          <div className="d-flex w-100">
+            <Skeleton height={20} containerClassName="flex-fill" />
+          </div>
+        ) : (
+          <div
+            style={{
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              maxWidth: "15ch",
+            }}
+          >
+            {column.selector(row)}
+          </div>
+        )}
+      </React.Fragment>
+    ),
+  }));
+
   return (
     <div className="">
-      {/* <table className="table" border={1}>
-        <thead>
-          <tr className="bg-black">
-            <th className="text-primary">S. No</th>
-            <th className="text-primary">Request ID</th>
-            <th className="text-primary">Sub ID</th>
-            <th className="text-primary">Broker Name</th>
-            <th className="text-primary">Broker Type</th>
-            <th className="text-primary">Content Data</th>
-            <th className="text-primary">Error Logs</th>
-            <th className="text-primary">Success Logs</th>
-            <th className="text-primary">Info Logs</th>
-            <th className="text-primary">Data Intime</th>
-            <th className="text-primary">Data Outtime</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.map((item: any, index: any) => (
-            <tr key={index} className="bg-dark">
-              <td className="text-white">{item.s_No}</td>
-              <td className="text-white">{item.request_Id}</td>
-              <td className="text-white">{item.sub_Id}</td>
-              <td className="text-white">{item.broker_Name}</td>
-              <td className="text-white">{item.broker_Type}</td>
-              <td className="text-white">{item.content_Data}</td>
-              <td className="text-white">{item.error_Logs}</td>
-              <td className="text-white">{item.success_Logs}</td>
-              <td className="text-white">{item.info_Logs}</td>
-              <td className="text-white">{item.data_Intime}</td>
-              <td className="text-white">{item.data_Outtime}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
-
-      <div className="dataTables_wrapper" style={{ marginTop: "6rem" }}>
-        <DataTable data={data} columns={webHookColumns} />
-      </div>
-      <style></style>
+      <SkeletonTheme baseColor="#474E68" highlightColor="#C7C8CC">
+        <div className="dataTables_wrapper" style={{ marginTop: "6rem" }}>
+          <DataTable
+            data={data}
+            columns={modifiedColumns}
+            customStyles={customStyles}
+            pagination
+            striped={true}
+            // progressPending={!isLoading}
+            noDataComponent={false}
+            // progressComponent={<SelectTheme />}
+          />
+        </div>
+      </SkeletonTheme>
     </div>
   );
 };

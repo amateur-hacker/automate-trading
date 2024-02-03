@@ -210,7 +210,8 @@ const WebHookLogs = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: authToken ?? "",
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNCIsImVtYWlsIjoic2FjaGluMTIzNEBnbWFpbC5jb20iLCJ1aWQiOiJyUDhsbW1NRDZ2YjZDbWJVbnY2OGZlOTRLc20yIiwicGhvbmUiOiIxMjM0NTY3ODkwIiwiVXNlcm5hbWUiOiJzYWNoaW4xMjM0IiwiaWQiOiIyNCIsIm5iZiI6MTcwNjkxMTM0NSwiZXhwIjoxNzA2OTk3NzQ1LCJpYXQiOjE3MDY5MTEzNDV9.xp-vSXsDsmHXUP92QIARnBMZcfLS8YdgH1Xw3gBu2hI",
           },
           next: {
             revalidate: 0,
@@ -234,7 +235,7 @@ const WebHookLogs = () => {
       // setData(transformedData);
 
       dispatch(setWebHookLogs(transformedData));
-      console.log(apiData)
+      console.log(apiData);
     } catch (error) {
       console.log(
         `Error coming from handleGetWebHookLogs function: ${error.message}`
@@ -264,7 +265,7 @@ const WebHookLogs = () => {
 
   useEffect(() => {
     handleGetWebHookLogs();
-    console.log(webHookLogs)
+    console.log(webHookLogs);
   }, []);
 
   return (
