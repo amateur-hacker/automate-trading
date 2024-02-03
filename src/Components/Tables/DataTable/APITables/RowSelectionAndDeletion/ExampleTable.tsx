@@ -188,7 +188,7 @@ const ExampleTable = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: authToken ?? "",
+        Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNCIsImVtYWlsIjoic2FjaGluMTIzNEBnbWFpbC5jb20iLCJ1aWQiOiJyUDhsbW1NRDZ2YjZDbWJVbnY2OGZlOTRLc20yIiwicGhvbmUiOiIxMjM0NTY3ODkwIiwiVXNlcm5hbWUiOiJzYWNoaW4xMjM0IiwiaWQiOiIyNCIsIm5iZiI6MTcwNjkxMTM0NSwiZXhwIjoxNzA2OTk3NzQ1LCJpYXQiOjE3MDY5MTEzNDV9.xp-vSXsDsmHXUP92QIARnBMZcfLS8YdgH1Xw3gBu2hI",
       },
     });
     const data = await response.json();
