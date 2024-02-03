@@ -203,7 +203,7 @@ const WebHookLogs = () => {
 
   const handleGetWebHookLogs = async () => {
     try {
-      const authToken = Cookies?.get("authtoken");
+      const authToken = Cookies.get("AuthToken");
       const response = await fetch(
         "https://nextlevelpine.com/get-webhook-logs",
         {
@@ -212,9 +212,9 @@ const WebHookLogs = () => {
             "Content-Type": "application/json",
             Authorization: authToken ?? "",
           },
-          // next: {
-          //   revalidate: 0,
-          // },
+          next: {
+            revalidate: 0,
+          },
         }
       );
       const apiData = await response.json();
@@ -264,6 +264,7 @@ const WebHookLogs = () => {
 
   useEffect(() => {
     handleGetWebHookLogs();
+    console.log(webHookLogs)
   }, []);
 
   return (
