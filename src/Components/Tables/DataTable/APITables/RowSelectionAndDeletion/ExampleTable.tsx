@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import DataTable from "react-data-table-component";
-import DataTable1 from "./DataTable1";
+// import DataTable1 from "./DataTable1";
 
 const getWebHookLogs = async () => {
   try {
@@ -11,19 +11,21 @@ const getWebHookLogs = async () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: authToken ?? "",
+        // Authorization: authToken ?? "",
+        Authorization:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNCIsImVtYWlsIjoic2FjaGluMTIzNEBnbWFpbC5jb20iLCJ1aWQiOiJyUDhsbW1NRDZ2YjZDbWJVbnY2OGZlOTRLc20yIiwicGhvbmUiOiIxMjM0NTY3ODkwIiwiVXNlcm5hbWUiOiJzYWNoaW4xMjM0IiwiaWQiOiIyNCIsIm5iZiI6MTcwNzAwMDkyMSwiZXhwIjoxNzA3MDg3MzIxLCJpYXQiOjE3MDcwMDA5MjF9.fQZKBzN3XCP9_l1J1DpwCjA7JtOMtK_qP54jjmWyi2w",
       },
       next: {
         revalidate: 0,
       },
     });
     const apiData = await response.json();
-    const transformedData = apiData["$values"].map((item: any) => ({
+    const transformedData = apiData["$values"].map((item: any, index: any) => ({
       s_No: item.sNo !== null ? item.sNo : "null",
       request_Id: item.request_Id !== null ? item.request_Id : "null",
       sub_Id: item.sub_Id !== null ? item.sub_Id : "null",
       broker_Name: item.broker_Name !== null ? item.broker_Name : "null",
-      broker_Type: item.broker_Type !== null ? item.broker_Type : "null",
+      // broker_Type: item.broker_Type !== null ? item.broker_Type : "null",
       content_Data: item.content_Data !== null ? item.content_Data : "null",
       error_Logs: item.error_Logs !== null ? item.error_Logs : "null",
       success_Logs: item.success_Logs !== null ? item.success_Logs : "null",
@@ -41,8 +43,12 @@ const ExampleTable = async () => {
   const data = await getWebHookLogs();
   console.log("Data: ", data);
   return (
-    <div>
-      <table className="table" border={1}>
+    <div className="dataTables_wrapper">
+      {/* <table
+        className="table"
+        border={1}
+        style={{ marginBlock: "10rem", overflowX: "auto" }}
+      >
         <thead>
           <tr className="bg-black">
             <th className="text-primary">S. No</th>
@@ -58,9 +64,9 @@ const ExampleTable = async () => {
             <th className="text-primary">Data Outtime</th>
           </tr>
         </thead>
-        <tbody>
-          {data?.map((item: any, index: any) => (
-            <tr key={index} className="bg-dark">
+        <tbody className="">
+          {data.map((item: any, index: any) => (
+            <tr key={index} style={{ backgroundColor: "#1f232b" }}>
               <td className="text-white">{item.s_No}</td>
               <td className="text-white">{item.request_Id}</td>
               <td className="text-white">{item.sub_Id}</td>
@@ -75,8 +81,146 @@ const ExampleTable = async () => {
             </tr>
           ))}
         </tbody>
+      </table> */}
+      <table className="table table-striped table-dark custom-table text-center">
+        <thead>
+          <tr>
+            <th scope="col">S. No</th>
+            <th scope="col">Request ID</th>
+            <th scope="col">Sub ID</th>
+            <th scope="col">Broker Name</th>
+            <th scope="col">Content Data</th>
+            <th scope="col">Error Logs</th>
+            <th scope="col">Success Logs</th>
+            <th scope="col">Info Logs</th>
+            <th scope="col">Data Intime</th>
+            <th scope="col">Data Outtime</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* <tr style={{ color: "white" }}>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr> */}
+          {data.map((item: any, index: any) => (
+            <tr key={index} style={{ backgroundColor: "#1f232b" }}>
+              <td
+                className="text-white"
+                style={{
+                  maxWidth: "10ch",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.s_No}
+              </td>
+              <td
+                className="text-white"
+                style={{
+                  maxWidth: "10ch",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.request_Id}
+              </td>
+              <td
+                className="text-white"
+                style={{
+                  maxWidth: "10ch",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.sub_Id}
+              </td>
+              <td
+                className="text-white"
+                style={{
+                  maxWidth: "10ch",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.broker_Name}
+              </td>
+              <td
+                className="text-white"
+                style={{
+                  maxWidth: "10ch",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.content_Data}
+              </td>
+              <td
+                className="text-white"
+                style={{
+                  maxWidth: "10ch",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.error_Logs}
+              </td>
+              <td
+                className="text-white"
+                style={{
+                  maxWidth: "10ch",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.success_Logs}
+              </td>
+              <td
+                className="text-white"
+                style={{
+                  maxWidth: "10ch",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.info_Logs}
+              </td>
+              <td
+                className="text-white"
+                style={{
+                  maxWidth: "10ch",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.data_Intime}
+              </td>
+              <td
+                className="text-white"
+                style={{
+                  maxWidth: "10ch",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.data_Outtime}
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
-      <DataTable1 data={data} />;
+      {/* <DataTable1 data={data} /> */}
     </div>
   );
 };

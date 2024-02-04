@@ -4,7 +4,7 @@ import {
   RowsSelectionAndDeletionSubHeading,
   DeleteDataTableColumns,
 } from "@/Data/Table/DataTable";
-import { SetStateAction, useCallback, useEffect, useState } from "react";
+import { SetStateAction, useCallback, useEffect, useMemo, useState } from "react";
 import DataTable from "react-data-table-component";
 import { Button, Card, CardBody, Col, Row, NavItem, NavLink } from "reactstrap";
 // import ExpandedComponent from "./ExpandedComponent";
@@ -26,12 +26,12 @@ import { toast } from "react-toastify";
 import { setWebHookLogs } from "@/Redux/CustomSlices/WebHookSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-import { memo } from "react";
+import {  memo } from "react";
 import { RootState } from "@/Redux/ReduxStore";
 import { Trash } from "react-feather";
 import Time from "./Time";
 
-const WebHookLogs = () => {
+const WebHookLogs = memo(() => {
   const [data, setData] = useState<any[]>([]);
   const [selectedRows, setSelectedRows] = useState<any[]>([]);
   const [toggleCleared, setToggleCleared] = useState(false);
@@ -44,10 +44,10 @@ const WebHookLogs = () => {
   const [selectedColumnName, setSelectedColumnName] = useState("");
   const [isModalOpen, setModalOpen] = useState(false);
   const [initialRender, setInitialRender] = useState(true);
-  const dispatch = useDispatch();
-  const webHookLogs = useSelector(
-    (state: RootState) => state.webHook?.webHookLogs
-  );
+  // const dispatch = useDispatch();
+  // const webHookLogs = useSelector(
+  //   (state: RootState) => state.webHook?.webHookLogs
+  // );
 
   const [basicLineTab, setBasicLineTab] = useState("1");
   const [CopysuccessMessage, setCopysuccessMessage] = useState("");
@@ -121,7 +121,7 @@ const WebHookLogs = () => {
         cell.removeEventListener("click", handleCellClick);
       });
     };
-  }, [webHookLogs]); // Ensure the effect runs when data changes
+  }, [data]); // Ensure the effect runs when data changes
 
   const customStyles = {
     rows: {
@@ -142,7 +142,7 @@ const WebHookLogs = () => {
     },
   };
 
-  const webHookColumns = [
+  const webHookColumns = useMemo(() => [
     {
       id: "S.NO",
       name: "S.NO",
@@ -199,7 +199,7 @@ const WebHookLogs = () => {
       name: "DATEOUTTIME",
       selector: (row: any) => row.data_Outtime,
     },
-  ];
+  ], []);
 
   const handleGetWebHookLogs = async () => {
     try {
@@ -211,7 +211,7 @@ const WebHookLogs = () => {
           headers: {
             "Content-Type": "application/json",
             Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNCIsImVtYWlsIjoic2FjaGluMTIzNEBnbWFpbC5jb20iLCJ1aWQiOiJyUDhsbW1NRDZ2YjZDbWJVbnY2OGZlOTRLc20yIiwicGhvbmUiOiIxMjM0NTY3ODkwIiwiVXNlcm5hbWUiOiJzYWNoaW4xMjM0IiwiaWQiOiIyNCIsIm5iZiI6MTcwNjkxMTM0NSwiZXhwIjoxNzA2OTk3NzQ1LCJpYXQiOjE3MDY5MTEzNDV9.xp-vSXsDsmHXUP92QIARnBMZcfLS8YdgH1Xw3gBu2hI",
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNCIsImVtYWlsIjoic2FjaGluMTIzNEBnbWFpbC5jb20iLCJ1aWQiOiJyUDhsbW1NRDZ2YjZDbWJVbnY2OGZlOTRLc20yIiwicGhvbmUiOiIxMjM0NTY3ODkwIiwiVXNlcm5hbWUiOiJzYWNoaW4xMjM0IiwiaWQiOiIyNCIsIm5iZiI6MTcwNzAwMDkyMSwiZXhwIjoxNzA3MDg3MzIxLCJpYXQiOjE3MDcwMDA5MjF9.fQZKBzN3XCP9_l1J1DpwCjA7JtOMtK_qP54jjmWyi2w",
           },
           next: {
             revalidate: 0,
@@ -232,9 +232,8 @@ const WebHookLogs = () => {
         data_Intime: item.data_Intime !== null ? item.data_Intime : "null",
         data_Outtime: item.data_Outtime !== null ? item.data_Outtime : "null",
       }));
-      // setData(transformedData);
+      setData(transformedData);
 
-      dispatch(setWebHookLogs(transformedData));
       console.log(apiData);
     } catch (error) {
       console.log(
@@ -265,7 +264,6 @@ const WebHookLogs = () => {
 
   useEffect(() => {
     handleGetWebHookLogs();
-    console.log(webHookLogs);
   }, []);
 
   return (
@@ -316,7 +314,7 @@ const WebHookLogs = () => {
 
         <div className="dataTables_wrapper">
           <DataTable
-            data={webHookLogs}
+            data={data}
             columns={webHookColumns}
             striped={true}
             pagination
@@ -324,6 +322,7 @@ const WebHookLogs = () => {
             onSelectedRowsChange={handleRowSelected}
             clearSelectedRows={toggleCleared}
             customStyles={customStyles}
+            noDataComponent={false}
             // onRowClicked={(row): any => {
             //   handleGetColumnName(row);
             // }}
@@ -337,7 +336,7 @@ const WebHookLogs = () => {
       </div>
     </>
   );
-};
+});
 
 export default WebHookLogs;
 
