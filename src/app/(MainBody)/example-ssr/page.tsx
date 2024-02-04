@@ -3,9 +3,7 @@ import DataTable1 from "@/Components/Tables/DataTable/APITables/RowSelectionAndD
 const page = () => {
   return (
     <div>
-      <DataTable1>
         <ExampleTable />
-      </DataTable1>
     </div>
   );
 };
