@@ -408,7 +408,7 @@ const DataTable = memo(({ data }: any) => {
             </tr>
           </thead>
           <tbody>
-            {updatedData.map((item: any, index: any) => (
+            {updatedData?.map((item: any, index: any) => (
               <tr
                 key={index}
                 className="even:tw-bg-gray-800 odd:tw-bg-[#1f232b] tw-min-h-[50px] tw-border tw-border-white/50"

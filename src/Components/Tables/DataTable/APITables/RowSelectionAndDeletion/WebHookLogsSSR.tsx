@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import WebHookTable from "./WebHookTable";
+import dynamic from "next/dynamic";
 
 const getWebHookLogs = async () => {
   try {
