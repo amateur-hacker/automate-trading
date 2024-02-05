@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import DataTable from "./DataTable";
+import WebHookTable from "./WebHookTable";
 
 const getWebHookLogs = async () => {
   try {
@@ -11,8 +11,6 @@ const getWebHookLogs = async () => {
       headers: {
         "Content-Type": "application/json",
         Authorization: authToken ?? "",
-        // Authorization:
-        //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNCIsImVtYWlsIjoic2FjaGluMTIzNEBnbWFpbC5jb20iLCJ1aWQiOiJyUDhsbW1NRDZ2YjZDbWJVbnY2OGZlOTRLc20yIiwicGhvbmUiOiIxMjM0NTY3ODkwIiwiVXNlcm5hbWUiOiJzYWNoaW4xMjM0IiwiaWQiOiIyNCIsIm5iZiI6MTcwNzAwMDkyMSwiZXhwIjoxNzA3MDg3MzIxLCJpYXQiOjE3MDcwMDA5MjF9.fQZKBzN3XCP9_l1J1DpwCjA7JtOMtK_qP54jjmWyi2w",
       },
       next: {
         revalidate: 0,
@@ -38,15 +36,15 @@ const getWebHookLogs = async () => {
   }
 };
 
-const ExampleTable = async () => {
+const WebHookLogsSSR = async () => {
   const data = await getWebHookLogs();
 
-  console.log(data)
+  console.log(data);
   return (
     <div>
-      <DataTable data={data} />
+      <WebHookTable data={data} />
     </div>
   );
 };
 
-export default ExampleTable;
+export default WebHookLogsSSR;

@@ -1,9 +1,8 @@
-"use client";
-import APITables from "@/Components/Tables/DataTable/APITables/WebHookLogsTable";
+import WebHookLogsSSR from "@/Components/Tables/DataTable/APITables/RowSelectionAndDeletion/WebHookLogsSSR";
 import React from "react";
 
-const ApiTablesComponent = () => {
-  return <APITables />;
+const WebHookLogsSSRComponent = () => {
+  return <WebHookLogsSSR />;
 };
 
-export default ApiTablesComponent;
+export default WebHookLogsSSRComponent;

@@ -1,9 +1,8 @@
-"use client";
-import APITables from "@/Components/Tables/DataTable/APITables/BrokerLogsTable";
+import BrokerLogsSSR from "@/Components/Tables/DataTable/APITables/RowSelectionAndDeletion/BrokerLogsSSR";
 import React from "react";
 
-const ApiTablesComponent = () => {
-  return <APITables />;
+const BrokerLogsSSRComponent = () => {
+  return <BrokerLogsSSR />;
 };
 
-export default ApiTablesComponent;
+export default BrokerLogsSSRComponent;

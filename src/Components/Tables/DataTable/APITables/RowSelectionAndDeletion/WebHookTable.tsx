@@ -5,9 +5,9 @@ import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineDelete } from "react-icons/md";
 // import SweetAlert from "sweetalert2";
 import SweetAlert from "sweetalert2/dist/sweetalert2.js";
-import { useState } from "react";
+import { useState, memo } from "react";
 
-const BrokerTable = ({ data }: any) => {
+const WebHookTable = ({ data }: any) => {
   const [selectAll, setSelectAll] = useState(false);
   const [isRowSelected, setIsRowSelected] = useState(false);
   const [selectedRows, setSelectedRows] = useState([] as number[]);
@@ -57,13 +57,10 @@ const BrokerTable = ({ data }: any) => {
       onChange={toggleSelectAll}
     />,
     "S. NO",
-    "API ID",
     "REQUEST ID",
     "SUB ID",
     "BROKER",
-    "BROKER DATA",
     "SYNTAX",
-    "REQUEST NAME",
     "ERROR",
     "SUCCESS",
     "INFO",
@@ -213,11 +210,7 @@ const BrokerTable = ({ data }: any) => {
                       className="tw-bg-transparent tw-outline-none tw-border-none"
                       onClick={() => deleteRow(item.s_No)}
                     >
-                      <MdOutlineDelete
-                        className={`tw-text-2xl tw-text-red-600 ${
-                          isRowSelected && "hover:tw-text-white"
-                        } tw-transition-colors tw-duration-500 tw-ease-in`}
-                      />
+                      <MdOutlineDelete className={`tw-text-2xl tw-text-red-600 ${isRowSelected && "hover:tw-text-white"} tw-transition-colors tw-duration-500 tw-ease-in`} />
                     </button>
                   </div>
                 </td>
@@ -241,4 +234,4 @@ const BrokerTable = ({ data }: any) => {
   );
 };
 
-export default BrokerTable;
+export default WebHookTable;

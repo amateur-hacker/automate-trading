@@ -66,20 +66,19 @@ const SigninForm = () => {
         const data: any = await response.json();
         console.log("Response Data (JSON):", data);
         if (
-          // !Cookies.get("userid") &&
-          // !Cookies.get("authtoken") &&
-          // data.userId &&
-          // data.authToken
-          !Cookies.get("userId") &&
-          !Cookies.get("authToken") &&
+          !Cookies.get("userid") &&
+          !Cookies.get("authtoken") &&
           data.userId &&
           data.authToken
-        )
-          // {
-          //   Cookies.set("userid", data.userId, { expires: 1 });
-          //   Cookies.set("authtoken", data.authToken, { expires: 1 });
-          // }
-          toast("Redirecting ....");
+          // !Cookies.get("userId") &&
+          // !Cookies.get("authToken") &&
+          // data.userId &&
+          // data.authToken
+        ) {
+          Cookies.set("userid", data.userId, { expires: 1 });
+          Cookies.set("authtoken", data.authToken, { expires: 1 });
+        }
+        toast("Redirecting ....");
         await wait(1000);
         router.push("/dashboard");
       } else {

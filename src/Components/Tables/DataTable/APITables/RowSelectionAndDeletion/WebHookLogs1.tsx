@@ -203,7 +203,7 @@ const WebHookLogs = memo(() => {
 
   const handleGetWebHookLogs = async () => {
     try {
-      const authToken = Cookies.get("AuthToken");
+      const authToken = Cookies.get("authtoken");
       const response = await fetch(
         "https://nextlevelpine.com/get-webhook-logs",
         {
